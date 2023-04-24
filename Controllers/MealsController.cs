@@ -1,4 +1,5 @@
-﻿using CaloriesTrackingAPI.Data;
+﻿using CaloriesTrackingAPI.Context;
+using CaloriesTrackingAPI.Data;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CaloriesTrackingAPI.Controllers;
@@ -28,10 +29,14 @@ public class MealsController : ControllerBase
             Time = "kad god" }
 
     };
-    public MealsController()
+    private readonly MealsDbContext context;
+
+    public MealsController(MealsDbContext context)
     {
-        
+        this.context = context;
     }
+
+    
 
     [HttpGet]
     public List<Meal> GetMeals()
@@ -41,25 +46,48 @@ public class MealsController : ControllerBase
 
     [HttpGet]
     [Route("{id}")]
-    public Meal GetMeal(int id)
+    public async Task<ActionResult<Meal>> GetMeal(int id)
     {
 
-        
+        var meal = this.meals.FirstOrDefault(x => x.Id == id);
 
-        return this.meals.FirstOrDefault(meal => meal.Id == id);
+        if(meal == null)
+        {
+            return NotFound();
+        }
+
+        return Ok(meal);
     }
 
     [HttpPut]
     [Route("{id}")]
-    public List<Meal> GetMeal(int id, Meal meal)
+    public async Task<ActionResult<List<Meal>>> GetMeal(int id, Meal meal)
     {
-        
+        if (id != meal.Id)
+        {
+            return BadRequest("Invalid something");
+        }
 
+
+        var oldMeal = this.meals.FirstOrDefault(x => x.Id == id);
+
+        if(oldMeal == null)
+        {
+            return NotFound();
+        }
+
+        oldMeal.Calories = meal.Calories;
+        oldMeal.Date = meal.Date;
+        oldMeal.Name = meal.Name;
+        oldMeal.Time    = meal.Time;
+
+
+        
         return this.meals;
     }
 
     [HttpPost]
-    public List<Meal> AddMeal(Meal meal)
+    public async Task<ActionResult<List<Meal>>> AddMeal(Meal meal)
     {
         this.meals.Add(meal);
 
@@ -68,7 +96,7 @@ public class MealsController : ControllerBase
 
     [HttpDelete]
     [Route("{id}")]
-    public List<Meal> DeleteMeal(int id)
+    public async Task<ActionResult<List<Meal>>> DeleteMeal(int id)
     {
         var meal = this.meals.FirstOrDefault(meal => meal.Id == id);
         this.meals.Remove(meal);
