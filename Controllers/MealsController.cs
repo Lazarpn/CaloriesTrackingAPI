@@ -1,6 +1,10 @@
-﻿using CaloriesTrackingAPI.Context;
+﻿using AutoMapper;
+using CaloriesTrackingAPI.Context;
 using CaloriesTrackingAPI.Data;
+using CaloriesTrackingAPI.Models.Meals;
+using CaloriesTrackingAPI.Repository;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace CaloriesTrackingAPI.Controllers;
 
@@ -8,99 +12,88 @@ namespace CaloriesTrackingAPI.Controllers;
 [ApiController]
 public class MealsController : ControllerBase 
 {
-    private readonly List<Meal> meals = new List<Meal> {
-        new Meal {
-            Id = 1,
-            Name = "banana",
-            Date = "12",
-            Calories = 20,
-            Time = "kad god" } ,
-        new Meal {
-            Id = 2,
-            Name = "tost",
-            Date = "12",
-            Calories = 20,
-            Time = "kad god" },
-        new Meal {
-            Id = 3,
-            Name = "sta-god",
-            Date = "12",
-            Calories = 20,
-            Time = "kad god" }
+    private readonly IMapper mapper;
+    private readonly MealsRepository mealsRepository;
 
-    };
-    private readonly MealsDbContext context;
-
-    public MealsController(MealsDbContext context)
+    public MealsController(MealsRepository mealsRepository, IMapper mapper)
     {
-        this.context = context;
+        this.mealsRepository = mealsRepository;
+        this.mapper = mapper;
     }
 
-    
+
 
     [HttpGet]
-    public List<Meal> GetMeals()
+    public async Task<ActionResult<List<MealGetDto>>> GetMeals()
     {
-        return this.meals;
+        var meals = await this.mealsRepository.GetAllAsync();
+        var records = this.mapper.Map<List<MealGetDto>>(meals);
+        return Ok(records);
     }
 
     [HttpGet]
     [Route("{id}")]
-    public async Task<ActionResult<Meal>> GetMeal(int id)
+    public async Task<ActionResult<MealGetDto>> GetMeal(int id)
     {
 
-        var meal = this.meals.FirstOrDefault(x => x.Id == id);
+        var meal = await this.mealsRepository.GetAsync(id);
 
         if(meal == null)
         {
             return NotFound();
         }
 
-        return Ok(meal);
+        var record = this.mapper.Map<MealGetDto>(meal);
+        return Ok(record);
     }
 
     [HttpPut]
     [Route("{id}")]
-    public async Task<ActionResult<List<Meal>>> GetMeal(int id, Meal meal)
+    public async Task<ActionResult<List<Meal>>> ChangeMeal(int id, MealUpdateDto updateMeal)
     {
-        if (id != meal.Id)
+        if (id != updateMeal.Id)
         {
             return BadRequest("Invalid something");
         }
 
 
-        var oldMeal = this.meals.FirstOrDefault(x => x.Id == id);
 
-        if(oldMeal == null)
+        var meal = await this.mealsRepository.GetAsync(id);
+
+        if (meal == null)
         {
             return NotFound();
         }
 
-        oldMeal.Calories = meal.Calories;
-        oldMeal.Date = meal.Date;
-        oldMeal.Name = meal.Name;
-        oldMeal.Time    = meal.Time;
+        this.mapper.Map(updateMeal, meal);
 
+        await this.mealsRepository.UpdateAsync(meal);
 
-        
-        return this.meals;
+        return await this.mealsRepository.GetAllAsync();
     }
 
     [HttpPost]
-    public async Task<ActionResult<List<Meal>>> AddMeal(Meal meal)
+    public async Task<ActionResult<List<Meal>>> AddMeal(MealCreateDto createMeal)
     {
-        this.meals.Add(meal);
-
-        return this.meals;
+        var meal = this.mapper.Map<Meal>(createMeal);
+        await this.mealsRepository.AddAsync(meal);
+        return await this.mealsRepository.GetAllAsync();
     }
 
     [HttpDelete]
     [Route("{id}")]
     public async Task<ActionResult<List<Meal>>> DeleteMeal(int id)
     {
-        var meal = this.meals.FirstOrDefault(meal => meal.Id == id);
-        this.meals.Remove(meal);
-        return this.meals;
+        var meal = await this.mealsRepository.GetAsync(id);
+
+        if (meal == null)
+        {
+            return NotFound();
+        }
+
+        await this.mealsRepository.DeleteAsync(id);
+
+        return NoContent();
     }
 
 }

@@ -1,6 +1,8 @@
 
 using CaloriesTrackingAPI.Configuration;
 using CaloriesTrackingAPI.Context;
+using CaloriesTrackingAPI.Contracts;
+using CaloriesTrackingAPI.Repository;
 using Microsoft.EntityFrameworkCore;
 
 namespace CaloriesTrackingAPI
@@ -30,6 +32,9 @@ namespace CaloriesTrackingAPI
             });
 
             builder.Services.AddAutoMapper(typeof(MapperConfig));
+            builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
+            builder.Services.AddScoped<IMealsRepository, MealsRepository>();
+
 
 
             var app = builder.Build();
