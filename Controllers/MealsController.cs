@@ -24,9 +24,15 @@ public class MealsController : ControllerBase
 
 
     [HttpGet]
-    public async Task<ActionResult<List<MealGetDto>>> GetMeals()
+    [Route("meals/{id}")]
+    public async Task<ActionResult<List<MealGetDto>>> GetMeals(int id)
     {
-        var meals = await this.mealsRepository.GetAllAsync();
+        var meals = await this.mealsRepository.GetUserMeals(id);
+
+        if(meals == null) {
+            return BadRequest();
+        }
+
         var records = this.mapper.Map<List<MealGetDto>>(meals);
         return Ok(records);
     }
@@ -48,7 +54,7 @@ public class MealsController : ControllerBase
     }
 
     [HttpPut]
-    [Route("{id}")]
+    [Route("meal/{id}")]
     public async Task<ActionResult<List<Meal>>> ChangeMeal(int id, MealUpdateDto updateMeal)
     {
         if (id != updateMeal.Id)
