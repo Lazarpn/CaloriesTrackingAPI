@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CaloriesTrackingAPI.Migrations
 {
     [DbContext(typeof(MealsDbContext))]
-    [Migration("20230424123100_InitialMigration")]
-    partial class InitialMigration
+    [Migration("20230503180209_Initial")]
+    partial class Initial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
