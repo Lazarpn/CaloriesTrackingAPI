@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using CaloriesTrackingAPI.Context;
+using CaloriesTrackingAPI.Contracts;
 using CaloriesTrackingAPI.Data;
 using CaloriesTrackingAPI.Models.Meals;
 using CaloriesTrackingAPI.Repository;
@@ -13,9 +14,9 @@ namespace CaloriesTrackingAPI.Controllers;
 public class MealsController : ControllerBase 
 {
     private readonly IMapper mapper;
-    private readonly MealsRepository mealsRepository;
+    private readonly IMealsRepository mealsRepository;
 
-    public MealsController(MealsRepository mealsRepository, IMapper mapper)
+    public MealsController(IMealsRepository mealsRepository, IMapper mapper)
     {
         this.mealsRepository = mealsRepository;
         this.mapper = mapper;
@@ -25,7 +26,7 @@ public class MealsController : ControllerBase
 
     [HttpGet]
     [Route("meals/{id}")]
-    public async Task<ActionResult<List<MealGetDto>>> GetUserMeals(int id)
+    public async Task<ActionResult<List<MealGetDto>>> GetUserMeals(string id)
     {
         var meals = await this.mealsRepository.GetUserMeals(id);
 

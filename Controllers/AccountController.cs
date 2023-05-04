@@ -18,6 +18,23 @@ namespace CaloriesTrackingAPI.Controllers
         }
 
 
+        //api/Account/register
+        [HttpPost]
+        [Route("userInfo")]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        public async Task<ActionResult<UserInfoDto>> GetUserInfo(string email)
+        {
+            var user = await this.authManager.GetUserInfo(email);
+
+            if (user == null)
+            {
+                return BadRequest();
+            }
+
+            return Ok(user);
+        }
 
         //api/Account/register
         [HttpPost]

@@ -14,9 +14,9 @@ namespace CaloriesTrackingAPI.Repository
             this.context = context;
         }
 
-        public async Task<List<Meal>> GetUserMeals(int id)
+        public async Task<List<Meal>> GetUserMeals(string id)
         {
-            var meals = await this.context.Meals.Where(meal => meal.Id == id).ToListAsync();
+            var meals = await this.context.Meals.Where(meal => meal.MealsUserId == id).ToListAsync();
 
             if(meals == null)
             {
