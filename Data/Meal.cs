@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 
 namespace CaloriesTrackingAPI.Data
 {
@@ -12,6 +13,7 @@ namespace CaloriesTrackingAPI.Data
 
         [ForeignKey("MealsUser")]
         public string MealsUserId { get; set; }
+        [JsonIgnore]
         public MealsUser MealsUser { get; set; }
     }
 }

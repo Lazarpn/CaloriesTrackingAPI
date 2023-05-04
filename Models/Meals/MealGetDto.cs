@@ -2,7 +2,9 @@
 {
     public class MealGetDto : BaseMealDto
     {
-        
+        public int Id { get; set; }
+
+
     }
 
 }

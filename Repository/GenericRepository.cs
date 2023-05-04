@@ -19,19 +19,7 @@ namespace CaloriesTrackingAPI.Repository
             return entity;
         }
 
-        public async Task DeleteAsync(int id)
-        {
-            var entity = await GetAsync(id);
-            this.context.Set<T>().Remove(entity);
-            await this.context.SaveChangesAsync();
-
-        }
-
-        public async Task<bool> Exists(int id)
-        {
-            var entity = await GetAsync(id);
-            return entity != null;
-        }
+        
 
         public async Task<List<T>> GetAllAsync()
         {
@@ -54,6 +42,20 @@ namespace CaloriesTrackingAPI.Repository
         {
              this.context.Update(entity);
             await this.context.SaveChangesAsync();
+        }
+
+        public async Task DeleteAsync(int id)
+        {
+            var entity = await GetAsync(id);
+            this.context.Set<T>().Remove(entity);
+            await this.context.SaveChangesAsync();
+
+        }
+
+        public async Task<bool> Exists(int id)
+        {
+            var entity = await GetAsync(id);
+            return entity != null;
         }
     }
 }

@@ -26,6 +26,16 @@ namespace CaloriesTrackingAPI.Repository
             this.configuration = configuration;
         }
 
+        public async Task<MealsUser> GetUser(string id)
+        {
+           var user = await userManager.FindByIdAsync(id);
+            if (user == null)
+            {
+                return null;
+            }
+
+            return user;
+        }
 
         public async Task<UserInfoDto> GetUserInfo(string email)
         {
