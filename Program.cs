@@ -24,7 +24,7 @@ public class Program
 
         // Add services to the container.
 
-        var connectionString = builder.Configuration.GetConnectionString("HotelListingDbConnectionString");
+        var connectionString = builder.Configuration.GetConnectionString("MealsDbConnectionString");
         builder.Services.AddDbContext<MealsDbContext>(options =>
         {
             options.UseSqlServer(connectionString);
@@ -44,11 +44,11 @@ public class Program
 
         builder.Services.AddAutoMapper(typeof(MapperConfig));
 
-        //builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRespository<>));
+        builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
         builder.Services.AddScoped<IMealsRepository, MealsRepository>();
-
-        builder.Services.AddIdentityCore<MealsUser>().AddRoles<IdentityRole>().AddEntityFrameworkStores<MealsDbContext>();
         builder.Services.AddScoped<IAuthManager, AuthManager>();
+        builder.Services.AddIdentityCore<MealsUser>().AddRoles<IdentityRole>().AddEntityFrameworkStores<MealsDbContext>();
+
 
         builder.Services.AddAuthentication(options =>
         {

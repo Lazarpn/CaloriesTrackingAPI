@@ -25,7 +25,7 @@ public class MealsController : ControllerBase
 
     [HttpGet]
     [Route("meals/{id}")]
-    public async Task<ActionResult<List<MealGetDto>>> GetMeals(int id)
+    public async Task<ActionResult<List<MealGetDto>>> GetUserMeals(int id)
     {
         var meals = await this.mealsRepository.GetUserMeals(id);
 

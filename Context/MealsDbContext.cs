@@ -1,8 +1,12 @@
 ﻿using CaloriesTrackingAPI.Data;
+using CaloriesTrackingAPI.Data.Configuration;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
+
 namespace CaloriesTrackingAPI.Context;
 
-public class MealsDbContext : DbContext
+public class MealsDbContext : IdentityDbContext<MealsUser>
 {
     public MealsDbContext(DbContextOptions options) : base(options)
     {
@@ -15,33 +19,8 @@ public class MealsDbContext : DbContext
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);
-        modelBuilder.Entity<Meal>().HasData(
-            new Meal
-            {
-                Id = 1,
-                Name = "banana",
-                Date = "12",
-                Calories = 20,
-                Time = "kad god"
-            },
-        new Meal
-        {
-            Id = 2,
-            Name = "tost",
-            Date = "12",
-            Calories = 20,
-            Time = "kad god"
-        },
-        new Meal
-        {
-            Id = 3,
-            Name = "sta-god",
-            Date = "12",
-            Calories = 20,
-            Time = "kad god"
-        }
-
-            );
+        modelBuilder.ApplyConfiguration(new RoleConfiguration());
+        modelBuilder.ApplyConfiguration(new MealsConfiguration());
     }
 
 

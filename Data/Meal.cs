@@ -10,8 +10,8 @@ namespace CaloriesTrackingAPI.Data
         public int Calories { get; set; }
         public string Time { get; set; }
 
-        [ForeignKey(nameof(MealsUserId))]
-        public int MealsUserId { get; set; }
-        public MealsUser MealsUser { get; set; }
+        //[ForeignKey("MealsUser")]
+        //public string MealsUserId { get; set; }
+        //public MealsUser MealsUser { get; set; }
     }
 }

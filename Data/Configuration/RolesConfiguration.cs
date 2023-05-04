@@ -2,27 +2,26 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace CaloriesTrackingAPI.Data.Configuration
+namespace CaloriesTrackingAPI.Data.Configuration;
+
+public class RoleConfiguration : IEntityTypeConfiguration<IdentityRole>
 {
-    public class RoleConfiguration : IEntityTypeConfiguration<IdentityRole>
+    public void Configure(EntityTypeBuilder<IdentityRole> builder)
+
     {
-        public void Configure(EntityTypeBuilder<IdentityRole> builder)
+        builder.HasData(
+            new IdentityRole
+            {
+                Name = "Administrator",
+                NormalizedName = "ADMINISTRATOR"
+            },
+            new IdentityRole
+            {
+                Name = "User",
+                NormalizedName = "USER"
+            }
 
-        {
-            builder.HasData(
-                new IdentityRole
-                {
-                    Name = "Aministrator",
-                    NormalizedName = "ADMINISTRATOR"
-                },
-                new IdentityRole
-                {
-                    Name = "User",
-                    NormalizedName = "USER"
-                }
+        );
 
-            );
-
-        }
     }
 }

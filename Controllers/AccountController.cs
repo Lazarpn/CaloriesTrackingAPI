@@ -27,17 +27,13 @@ namespace CaloriesTrackingAPI.Controllers
         [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<ActionResult> Register([FromBody] UserRegisterDto userRegisterDto)
         {
-            var errors = await this.authManager.Register(userRegisterDto);
-            if (errors.Any())
+            var authResponse = await this.authManager.Register(userRegisterDto);
+            if (authResponse == null)
             {
-                foreach (var error in errors)
-                {
-                    ModelState.AddModelError(error.Code, error.Description);
-                }
-                return BadRequest(ModelState);
+                return Unauthorized();
             }
 
-            return Ok();
+            return Ok(authResponse);
         }
         [HttpPost]
         [Route("login")]

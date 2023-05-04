@@ -16,60 +16,60 @@ namespace CaloriesTrackingAPI.Data.Configuration
                 Date = "bas",
                 Calories = 150,
                 Time = "bla",
-                MealsUserId = 1,
+                //MealsUserId = "1",
             }, new Meal
             {
-                Id = 1,
+                Id = 2,
                 Name = "Jamaica",
                 Date = "bas",
                 Calories = 150,
                 Time = "bla",
-                MealsUserId = 1,
+                //MealsUserId = "1",
 
             }, new Meal
             {
-                Id = 1,
+                Id = 3,
                 Name = "Jamaica",
                 Date = "bas",
                 Calories = 150,
                 Time = "bla",
-                MealsUserId = 3,
+                //MealsUserId = "1",
 
             }, new Meal
             {
-                Id = 1,
+                Id = 4,
                 Name = "Jamaica",
                 Date = "bas",
                 Calories = 150,
                 Time = "bla",
-                MealsUserId = 3,
+                //MealsUserId = "4",
 
             }, new Meal
             {
-                Id = 1,
+                Id = 5,
                 Name = "Jamaica",
                 Date = "bas",
                 Calories = 150,
                 Time = "bla",
-                MealsUserId = 4,
+                //MealsUserId = "4",
 
             }, new Meal
             {
-                Id = 1,
+                Id = 6,
                 Name = "Jamaica",
                 Date = "bas",
                 Calories = 150,
                 Time = "bla",
-                MealsUserId = 4,
+                //MealsUserId = "4",
 
             }, new Meal
             {
-                Id = 1,
+                Id = 7,
                 Name = "Jamaica",
                 Date = "bas",
                 Calories = 150,
                 Time = "bla",
-                MealsUserId = 4,
+                //MealsUserId = "4",
 
             }
             );

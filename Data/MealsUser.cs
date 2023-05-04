@@ -7,7 +7,7 @@ namespace CaloriesTrackingAPI.Data
         public string FirstName { get; set; }
         public string LastName { get; set; }
 
-        public virtual IList<Meal> Meals { get; set; }
+        //public ICollection<Meal> Meals { get; set; }
 
     }
 }

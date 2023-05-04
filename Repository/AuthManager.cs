@@ -51,7 +51,7 @@ namespace CaloriesTrackingAPI.Repository
 
         }
 
-        public async Task<IEnumerable<IdentityError>> Register(UserRegisterDto userDto)
+        public async Task<AuthResponseDto> Register(UserRegisterDto userDto)
         {
             var user = this.mapper.Map<MealsUser>(userDto);
             //user.UserName = user.Email;
@@ -61,10 +61,12 @@ namespace CaloriesTrackingAPI.Repository
 
             if (result.Succeeded)
             {
+
                 await this.userManager.AddToRoleAsync(user, "User");
             }
+            var userLogin = this.mapper.Map<UserLoginDto>(userDto);
 
-            return result.Errors;
+            return await this.Login(userLogin);
 
         }
 
