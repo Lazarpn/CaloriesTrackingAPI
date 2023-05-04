@@ -16,7 +16,7 @@ namespace CaloriesTrackingAPI.Data.Configuration
                 Date = "bas",
                 Calories = 150,
                 Time = "bla",
-                //MealsUserId = "1",
+                MealsUserId = "1970b77a-defb-4710-a942-8062345d4a34",
             }, new Meal
             {
                 Id = 2,
@@ -24,7 +24,7 @@ namespace CaloriesTrackingAPI.Data.Configuration
                 Date = "bas",
                 Calories = 150,
                 Time = "bla",
-                //MealsUserId = "1",
+                MealsUserId = "1970b77a-defb-4710-a942-8062345d4a34",
 
             }, new Meal
             {
@@ -33,7 +33,7 @@ namespace CaloriesTrackingAPI.Data.Configuration
                 Date = "bas",
                 Calories = 150,
                 Time = "bla",
-                //MealsUserId = "1",
+                MealsUserId = "1970b77a-defb-4710-a942-8062345d4a34",
 
             }, new Meal
             {
@@ -42,7 +42,7 @@ namespace CaloriesTrackingAPI.Data.Configuration
                 Date = "bas",
                 Calories = 150,
                 Time = "bla",
-                //MealsUserId = "4",
+                MealsUserId = "61226191-d59e-42fd-ac75-c8c66dc4f2b9",
 
             }, new Meal
             {
@@ -51,7 +51,7 @@ namespace CaloriesTrackingAPI.Data.Configuration
                 Date = "bas",
                 Calories = 150,
                 Time = "bla",
-                //MealsUserId = "4",
+                MealsUserId = "61226191-d59e-42fd-ac75-c8c66dc4f2b9",
 
             }, new Meal
             {
@@ -60,7 +60,7 @@ namespace CaloriesTrackingAPI.Data.Configuration
                 Date = "bas",
                 Calories = 150,
                 Time = "bla",
-                //MealsUserId = "4",
+                MealsUserId = "61226191-d59e-42fd-ac75-c8c66dc4f2b9",
 
             }, new Meal
             {
@@ -69,7 +69,7 @@ namespace CaloriesTrackingAPI.Data.Configuration
                 Date = "bas",
                 Calories = 150,
                 Time = "bla",
-                //MealsUserId = "4",
+                MealsUserId = "61226191-d59e-42fd-ac75-c8c66dc4f2b9",
 
             }
             );
