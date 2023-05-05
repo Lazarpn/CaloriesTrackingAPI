@@ -10,6 +10,7 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 using CaloriesTrackingAPI.Models.Users;
+using Microsoft.Extensions.Diagnostics.HealthChecks;
 
 namespace CaloriesTrackingAPI.Repository
 {
@@ -49,6 +50,47 @@ namespace CaloriesTrackingAPI.Repository
 
             return userInfo;
         }
+
+        public async Task<UserInfoDto> ChangeCaloriesPreference(UserCaloriesDto userCaloriesDto)
+        {
+            var user = await this.userManager.FindByIdAsync(userCaloriesDto.Id);
+            if (user == null)
+            {
+                return null;
+            }
+
+            user.CaloriesPreference = userCaloriesDto.CaloriesPreference;
+            await this.userManager.UpdateAsync(user);
+            var userInfo = this.mapper.Map<UserInfoDto>(user);
+
+            return userInfo;
+        }
+
+
+
+        public async Task<IdentityResult> ChangeUserInfo(string id, string firstName, string lastName)
+        {
+            var user = await this.userManager.FindByIdAsync(id);
+            if (user == null)
+            {
+                return null;
+            }
+
+            user.FirstName = firstName;
+            user.LastName = lastName;
+
+
+            var result = await this.userManager.UpdateAsync(user);
+
+            if(result.Succeeded)
+            {
+                // LOGIKA NEKA
+            }
+
+
+            return result;
+        }
+
 
 
         public async Task<AuthResponseDto> Login(UserLoginDto loginDto)

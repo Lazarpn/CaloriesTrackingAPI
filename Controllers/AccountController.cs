@@ -17,10 +17,52 @@ namespace CaloriesTrackingAPI.Controllers
             this.authManager = authManager;
         }
 
+        [HttpPut]
+        [Route("calories/{id}")]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        public async Task<ActionResult> ChangeCaloriesPreference(string id, UserCaloriesDto userCaloriesDto)
+        {
+            if (id != userCaloriesDto.Id)
+            {
+                return BadRequest();
+            }
+            var result = await this.authManager.ChangeCaloriesPreference(userCaloriesDto);
 
-        //api/Account/register
-        [HttpPost]
-        [Route("userInfo")]
+            if (result == null)
+            {
+                return BadRequest();
+            }
+
+            return Ok(result);
+        }
+
+
+        [HttpPut]
+        [Route("{id}")]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        public async Task<ActionResult> ChangeUserInfo(string id, UserUpdateDto userUpdate)
+        {
+            if(id != userUpdate.Id)
+            {
+                return BadRequest();
+            }
+            var result = await this.authManager.ChangeUserInfo(id, userUpdate.FirstName, userUpdate.LastName);
+
+            if (result == null)
+            {
+                return BadRequest();
+            }
+
+            return Ok(result);
+        }
+
+        //api/Account/email
+        [HttpGet]
+        [Route("{email}")]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status200OK)]
