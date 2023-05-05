@@ -1,4 +1,5 @@
 ﻿using CaloriesTrackingAPI.Contracts;
+using CaloriesTrackingAPI.Data;
 using CaloriesTrackingAPI.Models.User;
 using CaloriesTrackingAPI.Models.Users;
 using Microsoft.AspNetCore.Http;
@@ -15,6 +16,22 @@ namespace CaloriesTrackingAPI.Controllers
         public AccountController(IAuthManager authManager)
         {
             this.authManager = authManager;
+        }
+
+        [HttpGet]
+        [Route("all")]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        public async Task<ActionResult<List<UserInfoDto>>> GetUsers()
+        {
+            var users = await this.authManager.GetUsers();
+            if(users == null)
+            {
+                return NotFound();
+            }
+
+            return users;
         }
 
         [HttpPut]

@@ -15,7 +15,7 @@ namespace CaloriesTrackingAPI.Contracts
         Task<UserInfoDto> ChangeCaloriesPreference(UserCaloriesDto userCaloriesDto);
         Task<IdentityResult> UploadPhoto(string id, UserPhotoDto userPhotoDto);
         
-        
+        Task<List<UserInfoDto>> GetUsers();
 
 
 

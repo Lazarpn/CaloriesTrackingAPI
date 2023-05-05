@@ -11,6 +11,7 @@ using System.Security.Claims;
 using System.Text;
 using CaloriesTrackingAPI.Models.Users;
 using Microsoft.Extensions.Diagnostics.HealthChecks;
+using Microsoft.EntityFrameworkCore;
 
 namespace CaloriesTrackingAPI.Repository
 {
@@ -29,6 +30,18 @@ namespace CaloriesTrackingAPI.Repository
 
        
 
+        public async Task<List<UserInfoDto>> GetUsers()
+        {
+            var users = await this.userManager.Users.ToListAsync();
+            if(users == null)
+            {
+                return null;
+            }
+
+            var usersList = this.mapper.Map<List<UserInfoDto>>(users);
+            return usersList;
+
+        }
 
         public async Task<IdentityResult> UploadPhoto(string id, UserPhotoDto userPhotoDto)
         {
