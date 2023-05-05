@@ -4,6 +4,7 @@ using CaloriesTrackingAPI.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CaloriesTrackingAPI.Migrations
 {
     [DbContext(typeof(MealsDbContext))]
-    partial class MealsDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230505124450_AddingPhoto")]
+    partial class AddingPhoto
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -184,8 +187,8 @@ namespace CaloriesTrackingAPI.Migrations
                         .HasMaxLength(256)
                         .HasColumnType("nvarchar(256)");
 
-                    b.Property<string>("UserPhoto")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<byte[]>("UserPhoto")
+                        .HasColumnType("varbinary(max)");
 
                     b.HasKey("Id");
 
@@ -229,13 +232,13 @@ namespace CaloriesTrackingAPI.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "9393c059-98a4-4de7-88cf-24f8cdab925d",
+                            Id = "869b6ee1-9f3f-4614-885f-d423d2ebbfc3",
                             Name = "Administrator",
                             NormalizedName = "ADMINISTRATOR"
                         },
                         new
                         {
-                            Id = "3668d59c-2eb1-4783-85c0-f59c094cf2d0",
+                            Id = "526ed3e4-afa3-4eed-a243-00d7da96fe2c",
                             Name = "User",
                             NormalizedName = "USER"
                         });

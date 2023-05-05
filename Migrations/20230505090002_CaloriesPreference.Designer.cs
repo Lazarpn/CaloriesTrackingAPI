@@ -4,6 +4,7 @@ using CaloriesTrackingAPI.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CaloriesTrackingAPI.Migrations
 {
     [DbContext(typeof(MealsDbContext))]
-    partial class MealsDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230505090002_CaloriesPreference")]
+    partial class CaloriesPreference
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -184,9 +187,6 @@ namespace CaloriesTrackingAPI.Migrations
                         .HasMaxLength(256)
                         .HasColumnType("nvarchar(256)");
 
-                    b.Property<string>("UserPhoto")
-                        .HasColumnType("nvarchar(max)");
-
                     b.HasKey("Id");
 
                     b.HasIndex("NormalizedEmail")
@@ -229,13 +229,13 @@ namespace CaloriesTrackingAPI.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "9393c059-98a4-4de7-88cf-24f8cdab925d",
+                            Id = "d73be761-237b-482b-a529-bde93246468f",
                             Name = "Administrator",
                             NormalizedName = "ADMINISTRATOR"
                         },
                         new
                         {
-                            Id = "3668d59c-2eb1-4783-85c0-f59c094cf2d0",
+                            Id = "2e0c05ea-9316-45cb-abe9-758df536c7e7",
                             Name = "User",
                             NormalizedName = "USER"
                         });

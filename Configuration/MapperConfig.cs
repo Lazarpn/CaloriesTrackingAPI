@@ -19,6 +19,8 @@ public class MapperConfig: Profile
         CreateMap<UserInfoDto, MealsUser>().ReverseMap();
         CreateMap<UserCaloriesDto, MealsUser>().ReverseMap();
         CreateMap<UserCaloriesDto, UserInfoDto>().ReverseMap();
+        CreateMap<UserPhotoDto, MealsUser>().ReverseMap();
+
 
 
 

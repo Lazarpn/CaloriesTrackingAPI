@@ -27,6 +27,24 @@ namespace CaloriesTrackingAPI.Repository
             this.configuration = configuration;
         }
 
+       
+
+
+        public async Task<IdentityResult> UploadPhoto(string id, UserPhotoDto userPhotoDto)
+        {
+            var user = await this.userManager.FindByIdAsync(id);
+            if (user == null)
+            {
+                return null;
+            }
+
+            user.UserPhoto = userPhotoDto.UserPhoto;
+
+            var result = await this.userManager.UpdateAsync(user);
+
+            return result;
+        }
+
         public async Task<MealsUser> GetUser(string id)
         {
            var user = await userManager.FindByIdAsync(id);
@@ -169,6 +187,6 @@ namespace CaloriesTrackingAPI.Repository
 
         }
 
-
+        
     }
 }

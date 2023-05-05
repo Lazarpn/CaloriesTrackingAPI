@@ -38,6 +38,32 @@ namespace CaloriesTrackingAPI.Controllers
             return Ok(result);
         }
 
+       
+
+
+        [HttpPut]
+        [Route("photo/{id}")]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        public async Task<ActionResult> UploadPhoto(string id, UserPhotoDto userPhotoDto)
+        {
+            if (id != userPhotoDto.Id)
+            {
+                return BadRequest();
+            }
+            var result = await this.authManager.UploadPhoto(id, userPhotoDto);
+
+            if (result == null)
+            {
+                return BadRequest();
+            }
+
+            return Ok(result);
+        }
+
+
+     
 
         [HttpPut]
         [Route("{id}")]

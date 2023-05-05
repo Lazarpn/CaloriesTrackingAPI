@@ -7,6 +7,8 @@
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public int? CaloriesPreference { get; set; } = null;
+        public string? UserPhoto { get; set; } = null;
+
 
 
     }
