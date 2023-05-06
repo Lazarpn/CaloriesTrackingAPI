@@ -14,14 +14,14 @@ namespace CaloriesTrackingAPI.Controllers;
 public class MealsController : ControllerBase 
 {
     private readonly IMapper mapper;
-    private readonly IAuthManager authManager;
+    private readonly IUserRepository userRepository;
     private readonly IMealsRepository mealsRepository;
 
-    public MealsController(IMealsRepository mealsRepository, IMapper mapper, IAuthManager authManager)
+    public MealsController(IMealsRepository mealsRepository, IMapper mapper, IUserRepository userRepository)
     {
         this.mealsRepository = mealsRepository;
         this.mapper = mapper;
-        this.authManager = authManager;
+        this.userRepository = userRepository;
     }
 
 
@@ -84,7 +84,7 @@ public class MealsController : ControllerBase
     [HttpPost]
     public async Task<ActionResult<Meal>> AddMeal(MealCreateDto createMeal)
     {
-        var user = await this.authManager.GetUser(createMeal.MealsUserId);
+        var user = await this.userRepository.GetUser(createMeal.MealsUserId);
         var meal = this.mapper.Map<Meal>(createMeal);
         meal.MealsUser = user;
         await this.mealsRepository.AddAsync(meal);

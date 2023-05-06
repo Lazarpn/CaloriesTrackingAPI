@@ -48,7 +48,7 @@ public class Program
         builder.Services.AddScoped<IMealsRepository, MealsRepository>();
         builder.Services.AddScoped<IAuthManager, AuthManager>();
         builder.Services.AddIdentityCore<MealsUser>().AddRoles<IdentityRole>().AddEntityFrameworkStores<MealsDbContext>();
-
+        builder.Services.AddScoped<IUserRepository, UserRespository>();
 
         builder.Services.AddAuthentication(options =>
         {
