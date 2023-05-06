@@ -1,11 +1,8 @@
 ﻿using AutoMapper;
-using CaloriesTrackingAPI.Context;
 using CaloriesTrackingAPI.Contracts;
 using CaloriesTrackingAPI.Data;
 using CaloriesTrackingAPI.Models.Meals;
-using CaloriesTrackingAPI.Repository;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 
 namespace CaloriesTrackingAPI.Controllers;
 
