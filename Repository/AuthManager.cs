@@ -85,10 +85,13 @@ namespace CaloriesTrackingAPI.Repository
 
             var token = await this.GenerateToken(user);
 
+            var userInfo = this.mapper.Map<UserInfoDto>(user);
+
             return new AuthResponseDto
             {
                 Token = token,
-                UserId = user.Id
+                UserId = user.Id,
+                UserInfo = userInfo
             };
 
 
@@ -135,7 +138,7 @@ namespace CaloriesTrackingAPI.Repository
                 issuer: this.configuration["JwtSettings:Issuer"],
                 audience: this.configuration["JwtSettings:Audience"],
                 claims: claims,
-                expires: DateTime.Now.AddMinutes(Convert.ToInt32(this.configuration["JwtSettings:Minutes"])),
+                expires: DateTime.Now.AddMinutes(Convert.ToInt32(this.configuration["JwtSettings:DurationInMinutes"])),
                 signingCredentials: credentials
                );
 

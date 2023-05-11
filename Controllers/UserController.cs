@@ -1,5 +1,6 @@
 ﻿using CaloriesTrackingAPI.Contracts;
 using CaloriesTrackingAPI.Models.Users;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -7,6 +8,7 @@ namespace CaloriesTrackingAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class UserController : ControllerBase
     {
         private readonly IUserRepository userRepository;
@@ -18,6 +20,7 @@ namespace CaloriesTrackingAPI.Controllers
 
         [HttpGet]
         [Route("all")]
+        [Authorize]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status200OK)]
@@ -34,6 +37,7 @@ namespace CaloriesTrackingAPI.Controllers
 
         [HttpPut]
         [Route("calories/{id}")]
+        [Authorize]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status200OK)]
@@ -58,6 +62,7 @@ namespace CaloriesTrackingAPI.Controllers
 
         [HttpPut]
         [Route("photo/{id}")]
+        [Authorize]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status200OK)]
@@ -82,6 +87,7 @@ namespace CaloriesTrackingAPI.Controllers
 
         [HttpPut]
         [Route("{id}")]
+        [Authorize]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status200OK)]
@@ -104,6 +110,7 @@ namespace CaloriesTrackingAPI.Controllers
         //api/Account/email
         [HttpGet]
         [Route("{email}")]
+        [Authorize]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status200OK)]

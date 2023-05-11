@@ -84,7 +84,7 @@ public class Program
         app.UseCors("AllowAll");
 
 
-
+        app.UseAuthentication();
         app.UseAuthorization();
 
 

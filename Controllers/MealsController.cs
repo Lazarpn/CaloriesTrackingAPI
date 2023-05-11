@@ -2,12 +2,14 @@
 using CaloriesTrackingAPI.Contracts;
 using CaloriesTrackingAPI.Data;
 using CaloriesTrackingAPI.Models.Meals;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CaloriesTrackingAPI.Controllers;
 
 [Route("[controller]")]
 [ApiController]
+[Authorize]
 public class MealsController : ControllerBase 
 {
     private readonly IMapper mapper;
@@ -25,6 +27,7 @@ public class MealsController : ControllerBase
 
     [HttpGet]
     [Route("meals/{id}")]
+    [Authorize]
     public async Task<ActionResult<List<MealGetDto>>> GetUserMeals(string id)
     {
         var meals = await this.mealsRepository.GetUserMeals(id);
@@ -39,6 +42,7 @@ public class MealsController : ControllerBase
 
     [HttpGet]
     [Route("{id}")]
+    [Authorize]
     public async Task<ActionResult<MealGetDto>> GetMeal(int id)
     {
 
@@ -55,6 +59,7 @@ public class MealsController : ControllerBase
 
     [HttpPut]
     [Route("meal/{id}")]
+    [Authorize]
     public async Task<ActionResult<List<Meal>>> ChangeMeal(int id, MealUpdateDto updateMeal)
     {
         if (id != updateMeal.Id)
@@ -79,6 +84,7 @@ public class MealsController : ControllerBase
     }
 
     [HttpPost]
+    [Authorize]
     public async Task<ActionResult<Meal>> AddMeal(MealCreateDto createMeal)
     {
         var user = await this.userRepository.GetUser(createMeal.MealsUserId);
@@ -91,6 +97,7 @@ public class MealsController : ControllerBase
 
     [HttpDelete]
     [Route("{id}")]
+    [Authorize]
     public async Task<ActionResult<List<Meal>>> DeleteMeal(int id)
     {
         var meal = await this.mealsRepository.GetAsync(id);

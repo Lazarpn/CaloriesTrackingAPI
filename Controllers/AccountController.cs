@@ -1,8 +1,6 @@
 ﻿using CaloriesTrackingAPI.Contracts;
-using CaloriesTrackingAPI.Data;
-using CaloriesTrackingAPI.Models.User;
 using CaloriesTrackingAPI.Models.Users;
-using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CaloriesTrackingAPI.Controllers
@@ -21,8 +19,10 @@ namespace CaloriesTrackingAPI.Controllers
 
 
         //api/Account/${id}
+        // ZA MANAGER-A
         [HttpPut]
         [Route("{id}")]
+        [Authorize(Roles = "Administrator")]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status200OK)]
@@ -37,8 +37,10 @@ namespace CaloriesTrackingAPI.Controllers
             return Ok(authResponse);
         }
         //api/Account/register
+        // ZA MANAGER-A
         [HttpDelete]
         [Route("{email}")]
+        [Authorize(Roles = "Administrator")]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status200OK)]
@@ -55,6 +57,7 @@ namespace CaloriesTrackingAPI.Controllers
 
 
         //api/Account/register
+        [AllowAnonymous]
         [HttpPost]
         [Route("register")]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
