@@ -18,18 +18,7 @@ namespace CaloriesTrackingAPI.Repository
             this.context = context;
             this.mapper = mapper;
         }
-        public async Task<List<UserInfoDto>> GetUsers()
-        {
-            var users = await this.context.Users.ToListAsync();
-            if (users == null)
-            {
-                return null;
-            }
-
-            var usersList = this.mapper.Map<List<UserInfoDto>>(users);
-            return usersList;
-
-        }
+        
 
         public async Task<IdentityResult> UploadPhoto(string id, UserPhotoDto userPhotoDto)
         {

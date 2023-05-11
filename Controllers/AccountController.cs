@@ -18,42 +18,7 @@ namespace CaloriesTrackingAPI.Controllers
 
 
 
-        //api/Account/${id}
-        // ZA MANAGER-A
-        [HttpPut]
-        [Route("{id}")]
-        [Authorize(Roles = "Administrator")]
-        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        [ProducesResponseType(StatusCodes.Status200OK)]
-        public async Task<ActionResult> ChangeUser(string id, UserInfoDto userInfoDto)
-        {
-            var authResponse = await this.authManager.ChangeUser(userInfoDto);
-            if (authResponse == null)
-            {
-                return BadRequest();
-            }
-
-            return Ok(authResponse);
-        }
-        //api/Account/register
-        // ZA MANAGER-A
-        [HttpDelete]
-        [Route("{email}")]
-        [Authorize(Roles = "Administrator")]
-        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        [ProducesResponseType(StatusCodes.Status200OK)]
-        public async Task<ActionResult> DeleteUser(string email)
-        {
-            var authResponse = await this.authManager.DeleteUser(email);
-            if (authResponse == null)
-            {
-                return BadRequest();
-            }
-
-            return Ok(authResponse);
-        }
+        
 
 
         //api/Account/register

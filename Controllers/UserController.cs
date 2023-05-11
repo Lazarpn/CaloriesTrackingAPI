@@ -18,22 +18,7 @@ namespace CaloriesTrackingAPI.Controllers
             this.userRepository = userRepository;
         }
 
-        [HttpGet]
-        [Route("all")]
-        [Authorize]
-        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        [ProducesResponseType(StatusCodes.Status200OK)]
-        public async Task<ActionResult<List<UserInfoDto>>> GetUsers()
-        {
-            var users = await this.userRepository.GetUsers();
-            if (users == null)
-            {
-                return NotFound();
-            }
-
-            return users;
-        }
+        
 
         [HttpPut]
         [Route("calories/{id}")]
