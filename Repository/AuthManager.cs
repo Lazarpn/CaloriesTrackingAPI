@@ -81,13 +81,13 @@ namespace CaloriesTrackingAPI.Repository
 
             var roles = await this.userManager.GetRolesAsync(user);
 
-            var rolesClaims = roles.Select(x => new Claim(ClaimTypes.Role, x)).ToList();
+            var rolesClaims = roles.Select(x => new Claim("role", x)).ToList();
 
             var userClaims = await this.userManager.GetClaimsAsync(user);
 
             var claims = new List<Claim>
             {
-                new Claim(JwtRegisteredClaimNames.Sub, user.Email),
+                new Claim(JwtRegisteredClaimNames.Sub, user.Id),
                 new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
                 new Claim(JwtRegisteredClaimNames.Email, user.Email),
             }.Union(userClaims).Union(rolesClaims);

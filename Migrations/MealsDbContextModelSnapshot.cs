@@ -53,7 +53,7 @@ namespace CaloriesTrackingAPI.Migrations
 
                     b.HasIndex("MealsUserId");
 
-                    b.ToTable("Meals");
+                    b.ToTable("Meals", (string)null);
 
                     b.HasData(
                         new
