@@ -9,8 +9,7 @@ namespace CaloriesTrackingAPI.Contracts
     {
         Task<AuthResponseDto> Register(UserRegisterDto userDto);
         Task<AuthResponseDto> Login(UserLoginDto userDto);
-        Task<IdentityResult> ChangeUser( UserInfoDto userInfoDto);
-        Task<IdentityResult> DeleteUser(string email);
+       
 
     }
 }

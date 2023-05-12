@@ -1,8 +1,6 @@
 ﻿using AutoMapper;
 using CaloriesTrackingAPI.Contracts;
 using CaloriesTrackingAPI.Data;
-using CaloriesTrackingAPI.Contracts;
-using CaloriesTrackingAPI.Data;
 using CaloriesTrackingAPI.Models.User;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.IdentityModel.Tokens;
@@ -10,8 +8,7 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 using CaloriesTrackingAPI.Models.Users;
-using Microsoft.Extensions.Diagnostics.HealthChecks;
-using Microsoft.EntityFrameworkCore;
+
 
 namespace CaloriesTrackingAPI.Repository
 {
@@ -28,46 +25,7 @@ namespace CaloriesTrackingAPI.Repository
             this.configuration = configuration;
         }
 
-        public async Task<IdentityResult> ChangeUser( UserInfoDto userInfoDto)
-        {
-            var user = await this.userManager.FindByIdAsync(userInfoDto.Id);
-            if (user == null)
-            {
-                return null;
-            }
-
-            this.mapper.Map(userInfoDto, user);
-
-            var result = await this.userManager.UpdateAsync(user);
-
-            if(result.Succeeded)
-            {
-                return result;
-            }
-
-            return result;
-
-            
-
-        }
-
-        public async Task<IdentityResult> DeleteUser(string email)
-        {
-
-            var user = await this.userManager.FindByEmailAsync(email);
-            if(user == null)
-            {
-                return null;
-            }
-            var result = await this.userManager.DeleteAsync(user);
-
-            if(result.Succeeded)
-            {
-                return result;
-            }
-
-            return result;
-        }
+        
 
         public async Task<AuthResponseDto> Login(UserLoginDto loginDto)
         {

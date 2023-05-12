@@ -1,5 +1,4 @@
 ﻿using CaloriesTrackingAPI.Contracts;
-using CaloriesTrackingAPI.Migrations;
 using CaloriesTrackingAPI.Models.Users;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -10,25 +9,23 @@ namespace CaloriesTrackingAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    //[Authorize]
+    [Authorize]
     public class UserAdministratorController : ControllerBase
     {
-        private readonly IAuthManager authManager;
+      
         private readonly IUserAdministratorRepository userAdministratorRepository;
 
-        //api/Account/${id}
-        // ZA MANAGER-A
+        
 
-        public UserAdministratorController(IAuthManager authManager, IUserAdministratorRepository userAdministratorRepository)
+        public UserAdministratorController( IUserAdministratorRepository userAdministratorRepository)
         {
-            this.authManager = authManager;
+           
             this.userAdministratorRepository = userAdministratorRepository;
         }
 
-        [AllowAnonymous]
         [HttpGet]
         [Route("all")]
-        //[Authorize(Roles = "Administrator")]
+        [Authorize(Roles = "Administrator")]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status200OK)]
@@ -43,35 +40,32 @@ namespace CaloriesTrackingAPI.Controllers
             return users;
         }
 
-        [AllowAnonymous]
         [HttpPut]
         [Route("{id}")]
-        //[Authorize(Roles = "Administrator")]
+        [Authorize(Roles = "Administrator")]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public async Task<ActionResult> ChangeUser(string id, UserInfoDto userInfoDto)
+        public async Task<ActionResult> ChangeUser(string id, ManagerUserUpdateDto managerUserUpdateDto)
         {
-            var authResponse = await this.authManager.ChangeUser(userInfoDto);
-            if (authResponse == null)
+            var userResponse = await this.userAdministratorRepository.ChangeUser(managerUserUpdateDto);
+            if (userResponse == null)
             {
                 return BadRequest();
             }
 
-            return Ok(authResponse);
+            return Ok(userResponse);
         }
-        //api/Account/register
-        // ZA MANAGER-A
-        [AllowAnonymous]
+
         [HttpDelete]
         [Route("{email}")]
-        //[Authorize(Roles = "Administrator")]
+        [Authorize(Roles = "Administrator")]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<ActionResult> DeleteUser(string email)
         {
-            var authResponse = await this.authManager.DeleteUser(email);
+            var authResponse = await this.userAdministratorRepository.DeleteUser(email);
             if (authResponse == null)
             {
                 return BadRequest();
