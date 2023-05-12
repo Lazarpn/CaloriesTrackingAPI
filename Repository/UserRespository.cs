@@ -29,7 +29,7 @@ namespace CaloriesTrackingAPI.Repository
             }
             byte[] photoBytes = Convert.FromBase64String(userPhotoDto.UserPhoto);
 
-            user.UserPhoto = photoBytes;
+            user.UserPhotoByte = photoBytes;
 
             var result = await this.context.SaveChangesAsync();
             return new IdentityResult();

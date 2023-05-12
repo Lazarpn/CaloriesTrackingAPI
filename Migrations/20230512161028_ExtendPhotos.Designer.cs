@@ -4,6 +4,7 @@ using CaloriesTrackingAPI.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CaloriesTrackingAPI.Migrations
 {
     [DbContext(typeof(MealsDbContext))]
-    partial class MealsDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230512161028_ExtendPhotos")]
+    partial class ExtendPhotos
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -184,6 +187,9 @@ namespace CaloriesTrackingAPI.Migrations
                         .HasMaxLength(256)
                         .HasColumnType("nvarchar(256)");
 
+                    b.Property<string>("UserPhoto")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<byte[]>("UserPhotoByte")
                         .HasColumnType("varbinary(max)");
 
@@ -229,13 +235,13 @@ namespace CaloriesTrackingAPI.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "cebaf3c6-5f7a-430e-b96d-e470d0dd6e34",
+                            Id = "aa26c8e4-fc15-43fb-ae86-02029bfbedeb",
                             Name = "Administrator",
                             NormalizedName = "ADMINISTRATOR"
                         },
                         new
                         {
-                            Id = "91eda14d-ec47-4361-a4ce-7066453ebd0f",
+                            Id = "a60b0380-1cd6-43ee-897a-bf5570116276",
                             Name = "User",
                             NormalizedName = "USER"
                         });

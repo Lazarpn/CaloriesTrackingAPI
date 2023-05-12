@@ -7,7 +7,8 @@
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public int? CaloriesPreference { get; set; }
-        public string? UserPhoto { get; set; }
+
+        public byte[] UserPhotoByte { get; set; }
 
 
 
