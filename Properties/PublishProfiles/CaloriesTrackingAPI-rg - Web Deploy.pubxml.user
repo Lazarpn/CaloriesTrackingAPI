@@ -7,5 +7,12 @@ by editing this MSBuild file. In order to learn more about this please visit htt
   <PropertyGroup>
     <TimeStampOfAssociatedLegacyPublishXmlFile />
     <EncryptedPassword>AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAARVegpU3y4kqGIWL1jYZRBwAAAAACAAAAAAAQZgAAAAEAACAAAAAzAwy6j9dk6a+w1UYAIPohMCaARC8772DRBnQwUJryigAAAAAOgAAAAAIAACAAAADEO3VnMyls7d9b6Qa63KNfrRhpzdFGR87+VRQKWdDgjYAAAABtdazaAd09VFtQzjKfsAxkjjeXfLOyty2rhxoivdneqY/UShY5lnpwKPXvGwFQPcBbk1kJbMhq0Ah3PIkqDHyrSUjv16+KcI0NMJkjbSA2n1nLaIPm/c6c7Vrbs47zng6kQh04JfDZMkJTxDDuUYzOpVavi/q5t9Hy3QAulRUKJ0AAAABDKREHQ70a4xvY9Y8091oRMmo6Y4k6atTd0ERejVUVQNoG0jL61JyaZt2ajyMhVDqBsuuz1n/N6bu0aEdBLCyf</EncryptedPassword>
+    <History>True|2023-05-13T19:55:33.9240433Z;True|2023-05-13T21:53:22.5930460+02:00;True|2023-05-13T21:49:09.7011825+02:00;True|2023-05-13T21:29:07.5240227+02:00;</History>
+    <LastFailureDetails />
   </PropertyGroup>
+  <ItemGroup>
+    <DestinationConnectionStrings Include="MealsDbConnectionString">
+      <Value>Data Source=tcp:lazar-apps-dbserver.database.windows.net,1433%3bInitial Catalog=WeddingAPIDb%3bUser Id=lazar%40lazar-apps-dbserver%3bPassword=RzIaAe#7</Value>
+    </DestinationConnectionStrings>
+  </ItemGroup>
 </Project>

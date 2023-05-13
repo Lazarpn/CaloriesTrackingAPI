@@ -1,0 +1,5 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<sitemanifest>
+  <IisApp path="C:\Users\Lazar\Desktop\calories-tracking-api\CaloriesTrackingAPI\obj\Release\net7.0\PubTmp\Out\" />
+  <dbfullsql path="C:\Users\Lazar\Desktop\calories-tracking-api\CaloriesTrackingAPI\obj\Release\net7.0\PubTmp\EFSQLScripts\CaloriesTrackingAPI.Context.MealsDbContext.sql" />
+</sitemanifest>

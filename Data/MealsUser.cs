@@ -7,7 +7,7 @@ namespace CaloriesTrackingAPI.Data
     {
         public string FirstName { get; set; }
         public string LastName { get; set; }
-        public int? CaloriesPreference { get; set; } = null;
+        public int? CaloriesPreference { get; set; } = 0;
         public byte[]? UserPhotoByte { get; set; } = null;
 
 

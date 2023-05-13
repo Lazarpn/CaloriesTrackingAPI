@@ -229,13 +229,13 @@ namespace CaloriesTrackingAPI.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "cebaf3c6-5f7a-430e-b96d-e470d0dd6e34",
+                            Id = "48842222-0b45-4a60-87ca-f7c95f7fe1b2",
                             Name = "Administrator",
                             NormalizedName = "ADMINISTRATOR"
                         },
                         new
                         {
-                            Id = "91eda14d-ec47-4361-a4ce-7066453ebd0f",
+                            Id = "de557258-fecd-4c5f-b736-e9a94beed8be",
                             Name = "User",
                             NormalizedName = "USER"
                         });
