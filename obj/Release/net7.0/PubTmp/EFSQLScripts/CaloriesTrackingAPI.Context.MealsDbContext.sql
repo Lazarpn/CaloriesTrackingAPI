@@ -656,3 +656,305 @@ GO
 COMMIT;
 GO
 
+BEGIN TRANSACTION;
+GO
+
+IF NOT EXISTS(SELECT * FROM [__EFMigrationsHistory] WHERE [MigrationId] = N'20230513202302_NullableType')
+BEGIN
+    EXEC(N'DELETE FROM [AspNetRoles]
+    WHERE [Id] = N''91eda14d-ec47-4361-a4ce-7066453ebd0f'';
+    SELECT @@ROWCOUNT');
+END;
+GO
+
+IF NOT EXISTS(SELECT * FROM [__EFMigrationsHistory] WHERE [MigrationId] = N'20230513202302_NullableType')
+BEGIN
+    EXEC(N'DELETE FROM [AspNetRoles]
+    WHERE [Id] = N''cebaf3c6-5f7a-430e-b96d-e470d0dd6e34'';
+    SELECT @@ROWCOUNT');
+END;
+GO
+
+IF NOT EXISTS(SELECT * FROM [__EFMigrationsHistory] WHERE [MigrationId] = N'20230513202302_NullableType')
+BEGIN
+    IF EXISTS (SELECT * FROM [sys].[identity_columns] WHERE [name] IN (N'Id', N'ConcurrencyStamp', N'Name', N'NormalizedName') AND [object_id] = OBJECT_ID(N'[AspNetRoles]'))
+        SET IDENTITY_INSERT [AspNetRoles] ON;
+    EXEC(N'INSERT INTO [AspNetRoles] ([Id], [ConcurrencyStamp], [Name], [NormalizedName])
+    VALUES (N''48842222-0b45-4a60-87ca-f7c95f7fe1b2'', NULL, N''Administrator'', N''ADMINISTRATOR''),
+    (N''de557258-fecd-4c5f-b736-e9a94beed8be'', NULL, N''User'', N''USER'')');
+    IF EXISTS (SELECT * FROM [sys].[identity_columns] WHERE [name] IN (N'Id', N'ConcurrencyStamp', N'Name', N'NormalizedName') AND [object_id] = OBJECT_ID(N'[AspNetRoles]'))
+        SET IDENTITY_INSERT [AspNetRoles] OFF;
+END;
+GO
+
+IF NOT EXISTS(SELECT * FROM [__EFMigrationsHistory] WHERE [MigrationId] = N'20230513202302_NullableType')
+BEGIN
+    INSERT INTO [__EFMigrationsHistory] ([MigrationId], [ProductVersion])
+    VALUES (N'20230513202302_NullableType', N'7.0.5');
+END;
+GO
+
+COMMIT;
+GO
+
+BEGIN TRANSACTION;
+GO
+
+IF NOT EXISTS(SELECT * FROM [__EFMigrationsHistory] WHERE [MigrationId] = N'20230513204851_OverrideKey')
+BEGIN
+    EXEC(N'DELETE FROM [AspNetRoles]
+    WHERE [Id] = N''b1c36d74-8a34-43f5-bc4d-64c0c677df11'';
+    SELECT @@ROWCOUNT');
+END;
+GO
+
+IF NOT EXISTS(SELECT * FROM [__EFMigrationsHistory] WHERE [MigrationId] = N'20230513204851_OverrideKey')
+BEGIN
+    EXEC(N'DELETE FROM [AspNetRoles]
+    WHERE [Id] = N''b4fd5beb-19a6-4222-b1a2-25048a2f5d23'';
+    SELECT @@ROWCOUNT');
+END;
+GO
+
+IF NOT EXISTS(SELECT * FROM [__EFMigrationsHistory] WHERE [MigrationId] = N'20230513204851_OverrideKey')
+BEGIN
+    IF EXISTS (SELECT * FROM [sys].[identity_columns] WHERE [name] IN (N'Id', N'ConcurrencyStamp', N'Name', N'NormalizedName') AND [object_id] = OBJECT_ID(N'[AspNetRoles]'))
+        SET IDENTITY_INSERT [AspNetRoles] ON;
+    EXEC(N'INSERT INTO [AspNetRoles] ([Id], [ConcurrencyStamp], [Name], [NormalizedName])
+    VALUES (N''4ffda4b5-1ed6-4068-a00b-aff70a0e6bf2'', NULL, N''Administrator'', N''ADMINISTRATOR''),
+    (N''a9644260-6665-4f6d-a2a2-50bd7a383340'', NULL, N''User'', N''USER'')');
+    IF EXISTS (SELECT * FROM [sys].[identity_columns] WHERE [name] IN (N'Id', N'ConcurrencyStamp', N'Name', N'NormalizedName') AND [object_id] = OBJECT_ID(N'[AspNetRoles]'))
+        SET IDENTITY_INSERT [AspNetRoles] OFF;
+END;
+GO
+
+IF NOT EXISTS(SELECT * FROM [__EFMigrationsHistory] WHERE [MigrationId] = N'20230513204851_OverrideKey')
+BEGIN
+    INSERT INTO [__EFMigrationsHistory] ([MigrationId], [ProductVersion])
+    VALUES (N'20230513204851_OverrideKey', N'7.0.5');
+END;
+GO
+
+COMMIT;
+GO
+
+BEGIN TRANSACTION;
+GO
+
+IF NOT EXISTS(SELECT * FROM [__EFMigrationsHistory] WHERE [MigrationId] = N'20230513220410_RemovingKey')
+BEGIN
+    EXEC(N'DELETE FROM [AspNetRoles]
+    WHERE [Id] = N''4ffda4b5-1ed6-4068-a00b-aff70a0e6bf2'';
+    SELECT @@ROWCOUNT');
+END;
+GO
+
+IF NOT EXISTS(SELECT * FROM [__EFMigrationsHistory] WHERE [MigrationId] = N'20230513220410_RemovingKey')
+BEGIN
+    EXEC(N'DELETE FROM [AspNetRoles]
+    WHERE [Id] = N''a9644260-6665-4f6d-a2a2-50bd7a383340'';
+    SELECT @@ROWCOUNT');
+END;
+GO
+
+IF NOT EXISTS(SELECT * FROM [__EFMigrationsHistory] WHERE [MigrationId] = N'20230513220410_RemovingKey')
+BEGIN
+    IF EXISTS (SELECT * FROM [sys].[identity_columns] WHERE [name] IN (N'Id', N'ConcurrencyStamp', N'Name', N'NormalizedName') AND [object_id] = OBJECT_ID(N'[AspNetRoles]'))
+        SET IDENTITY_INSERT [AspNetRoles] ON;
+    EXEC(N'INSERT INTO [AspNetRoles] ([Id], [ConcurrencyStamp], [Name], [NormalizedName])
+    VALUES (N''1d713ffb-ec20-4441-839e-9549a47d0ca2'', NULL, N''Administrator'', N''ADMINISTRATOR''),
+    (N''533530a6-25a3-47df-8757-ef01463eaa30'', NULL, N''User'', N''USER'')');
+    IF EXISTS (SELECT * FROM [sys].[identity_columns] WHERE [name] IN (N'Id', N'ConcurrencyStamp', N'Name', N'NormalizedName') AND [object_id] = OBJECT_ID(N'[AspNetRoles]'))
+        SET IDENTITY_INSERT [AspNetRoles] OFF;
+END;
+GO
+
+IF NOT EXISTS(SELECT * FROM [__EFMigrationsHistory] WHERE [MigrationId] = N'20230513220410_RemovingKey')
+BEGIN
+    INSERT INTO [__EFMigrationsHistory] ([MigrationId], [ProductVersion])
+    VALUES (N'20230513220410_RemovingKey', N'7.0.5');
+END;
+GO
+
+COMMIT;
+GO
+
+BEGIN TRANSACTION;
+GO
+
+IF NOT EXISTS(SELECT * FROM [__EFMigrationsHistory] WHERE [MigrationId] = N'20230513220810_RemovingMeals')
+BEGIN
+    EXEC(N'DELETE FROM [AspNetRoles]
+    WHERE [Id] = N''1d713ffb-ec20-4441-839e-9549a47d0ca2'';
+    SELECT @@ROWCOUNT');
+END;
+GO
+
+IF NOT EXISTS(SELECT * FROM [__EFMigrationsHistory] WHERE [MigrationId] = N'20230513220810_RemovingMeals')
+BEGIN
+    EXEC(N'DELETE FROM [AspNetRoles]
+    WHERE [Id] = N''533530a6-25a3-47df-8757-ef01463eaa30'';
+    SELECT @@ROWCOUNT');
+END;
+GO
+
+IF NOT EXISTS(SELECT * FROM [__EFMigrationsHistory] WHERE [MigrationId] = N'20230513220810_RemovingMeals')
+BEGIN
+    EXEC(N'DELETE FROM [Meals]
+    WHERE [Id] = 1;
+    SELECT @@ROWCOUNT');
+END;
+GO
+
+IF NOT EXISTS(SELECT * FROM [__EFMigrationsHistory] WHERE [MigrationId] = N'20230513220810_RemovingMeals')
+BEGIN
+    EXEC(N'DELETE FROM [Meals]
+    WHERE [Id] = 2;
+    SELECT @@ROWCOUNT');
+END;
+GO
+
+IF NOT EXISTS(SELECT * FROM [__EFMigrationsHistory] WHERE [MigrationId] = N'20230513220810_RemovingMeals')
+BEGIN
+    EXEC(N'DELETE FROM [Meals]
+    WHERE [Id] = 3;
+    SELECT @@ROWCOUNT');
+END;
+GO
+
+IF NOT EXISTS(SELECT * FROM [__EFMigrationsHistory] WHERE [MigrationId] = N'20230513220810_RemovingMeals')
+BEGIN
+    EXEC(N'DELETE FROM [Meals]
+    WHERE [Id] = 4;
+    SELECT @@ROWCOUNT');
+END;
+GO
+
+IF NOT EXISTS(SELECT * FROM [__EFMigrationsHistory] WHERE [MigrationId] = N'20230513220810_RemovingMeals')
+BEGIN
+    EXEC(N'DELETE FROM [Meals]
+    WHERE [Id] = 5;
+    SELECT @@ROWCOUNT');
+END;
+GO
+
+IF NOT EXISTS(SELECT * FROM [__EFMigrationsHistory] WHERE [MigrationId] = N'20230513220810_RemovingMeals')
+BEGIN
+    EXEC(N'DELETE FROM [Meals]
+    WHERE [Id] = 6;
+    SELECT @@ROWCOUNT');
+END;
+GO
+
+IF NOT EXISTS(SELECT * FROM [__EFMigrationsHistory] WHERE [MigrationId] = N'20230513220810_RemovingMeals')
+BEGIN
+    EXEC(N'DELETE FROM [Meals]
+    WHERE [Id] = 7;
+    SELECT @@ROWCOUNT');
+END;
+GO
+
+IF NOT EXISTS(SELECT * FROM [__EFMigrationsHistory] WHERE [MigrationId] = N'20230513220810_RemovingMeals')
+BEGIN
+    IF EXISTS (SELECT * FROM [sys].[identity_columns] WHERE [name] IN (N'Id', N'ConcurrencyStamp', N'Name', N'NormalizedName') AND [object_id] = OBJECT_ID(N'[AspNetRoles]'))
+        SET IDENTITY_INSERT [AspNetRoles] ON;
+    EXEC(N'INSERT INTO [AspNetRoles] ([Id], [ConcurrencyStamp], [Name], [NormalizedName])
+    VALUES (N''32a5e7e8-f5ef-448f-bcb1-f38fad9f692d'', NULL, N''User'', N''USER''),
+    (N''6cc75f20-7095-4476-bab5-8f372746bb29'', NULL, N''Administrator'', N''ADMINISTRATOR'')');
+    IF EXISTS (SELECT * FROM [sys].[identity_columns] WHERE [name] IN (N'Id', N'ConcurrencyStamp', N'Name', N'NormalizedName') AND [object_id] = OBJECT_ID(N'[AspNetRoles]'))
+        SET IDENTITY_INSERT [AspNetRoles] OFF;
+END;
+GO
+
+IF NOT EXISTS(SELECT * FROM [__EFMigrationsHistory] WHERE [MigrationId] = N'20230513220810_RemovingMeals')
+BEGIN
+    INSERT INTO [__EFMigrationsHistory] ([MigrationId], [ProductVersion])
+    VALUES (N'20230513220810_RemovingMeals', N'7.0.5');
+END;
+GO
+
+COMMIT;
+GO
+
+BEGIN TRANSACTION;
+GO
+
+IF NOT EXISTS(SELECT * FROM [__EFMigrationsHistory] WHERE [MigrationId] = N'20230513221235_AddingForeign')
+BEGIN
+    EXEC(N'DELETE FROM [AspNetRoles]
+    WHERE [Id] = N''32a5e7e8-f5ef-448f-bcb1-f38fad9f692d'';
+    SELECT @@ROWCOUNT');
+END;
+GO
+
+IF NOT EXISTS(SELECT * FROM [__EFMigrationsHistory] WHERE [MigrationId] = N'20230513221235_AddingForeign')
+BEGIN
+    EXEC(N'DELETE FROM [AspNetRoles]
+    WHERE [Id] = N''6cc75f20-7095-4476-bab5-8f372746bb29'';
+    SELECT @@ROWCOUNT');
+END;
+GO
+
+IF NOT EXISTS(SELECT * FROM [__EFMigrationsHistory] WHERE [MigrationId] = N'20230513221235_AddingForeign')
+BEGIN
+    IF EXISTS (SELECT * FROM [sys].[identity_columns] WHERE [name] IN (N'Id', N'ConcurrencyStamp', N'Name', N'NormalizedName') AND [object_id] = OBJECT_ID(N'[AspNetRoles]'))
+        SET IDENTITY_INSERT [AspNetRoles] ON;
+    EXEC(N'INSERT INTO [AspNetRoles] ([Id], [ConcurrencyStamp], [Name], [NormalizedName])
+    VALUES (N''4f80e88f-2081-4cd4-9092-4cbf977fcf87'', NULL, N''Administrator'', N''ADMINISTRATOR''),
+    (N''6e5a4a76-f817-4bcc-9078-c0a0025e1db4'', NULL, N''User'', N''USER'')');
+    IF EXISTS (SELECT * FROM [sys].[identity_columns] WHERE [name] IN (N'Id', N'ConcurrencyStamp', N'Name', N'NormalizedName') AND [object_id] = OBJECT_ID(N'[AspNetRoles]'))
+        SET IDENTITY_INSERT [AspNetRoles] OFF;
+END;
+GO
+
+IF NOT EXISTS(SELECT * FROM [__EFMigrationsHistory] WHERE [MigrationId] = N'20230513221235_AddingForeign')
+BEGIN
+    INSERT INTO [__EFMigrationsHistory] ([MigrationId], [ProductVersion])
+    VALUES (N'20230513221235_AddingForeign', N'7.0.5');
+END;
+GO
+
+COMMIT;
+GO
+
+BEGIN TRANSACTION;
+GO
+
+IF NOT EXISTS(SELECT * FROM [__EFMigrationsHistory] WHERE [MigrationId] = N'20230513224133_FixErrors')
+BEGIN
+    EXEC(N'DELETE FROM [AspNetRoles]
+    WHERE [Id] = N''4f80e88f-2081-4cd4-9092-4cbf977fcf87'';
+    SELECT @@ROWCOUNT');
+END;
+GO
+
+IF NOT EXISTS(SELECT * FROM [__EFMigrationsHistory] WHERE [MigrationId] = N'20230513224133_FixErrors')
+BEGIN
+    EXEC(N'DELETE FROM [AspNetRoles]
+    WHERE [Id] = N''6e5a4a76-f817-4bcc-9078-c0a0025e1db4'';
+    SELECT @@ROWCOUNT');
+END;
+GO
+
+IF NOT EXISTS(SELECT * FROM [__EFMigrationsHistory] WHERE [MigrationId] = N'20230513224133_FixErrors')
+BEGIN
+    IF EXISTS (SELECT * FROM [sys].[identity_columns] WHERE [name] IN (N'Id', N'ConcurrencyStamp', N'Name', N'NormalizedName') AND [object_id] = OBJECT_ID(N'[AspNetRoles]'))
+        SET IDENTITY_INSERT [AspNetRoles] ON;
+    EXEC(N'INSERT INTO [AspNetRoles] ([Id], [ConcurrencyStamp], [Name], [NormalizedName])
+    VALUES (N''31379b99-ce2c-4319-87fb-466fa67701c0'', NULL, N''User'', N''USER''),
+    (N''82bb9f67-283c-482d-8c64-db948df403eb'', NULL, N''Administrator'', N''ADMINISTRATOR'')');
+    IF EXISTS (SELECT * FROM [sys].[identity_columns] WHERE [name] IN (N'Id', N'ConcurrencyStamp', N'Name', N'NormalizedName') AND [object_id] = OBJECT_ID(N'[AspNetRoles]'))
+        SET IDENTITY_INSERT [AspNetRoles] OFF;
+END;
+GO
+
+IF NOT EXISTS(SELECT * FROM [__EFMigrationsHistory] WHERE [MigrationId] = N'20230513224133_FixErrors')
+BEGIN
+    INSERT INTO [__EFMigrationsHistory] ([MigrationId], [ProductVersion])
+    VALUES (N'20230513224133_FixErrors', N'7.0.5');
+END;
+GO
+
+COMMIT;
+GO
+
