@@ -20,7 +20,7 @@ namespace CaloriesTrackingAPI.Repository
         }
         
 
-        public async Task<IdentityResult> UploadPhoto(string id, UserPhotoDto userPhotoDto)
+        public async Task<IdentityResult> UploadPhoto(Guid id, UserPhotoDto userPhotoDto)
         {
             var user = await this.context.Users.FindAsync(id);
             if (user == null)
@@ -35,7 +35,7 @@ namespace CaloriesTrackingAPI.Repository
             return new IdentityResult();
         }
 
-        public async Task<MealsUser> GetUser(string id)
+        public async Task<MealsUser> GetUser(Guid id)
         {
             var user = await this.context.Users.FindAsync(id);
             if (user == null)
@@ -76,7 +76,7 @@ namespace CaloriesTrackingAPI.Repository
 
 
 
-        public async Task<IdentityResult> ChangeUserInfo(string id, string firstName, string lastName)
+        public async Task<IdentityResult> ChangeUserInfo(Guid id, string firstName, string lastName)
         {
             var user = await this.context.Users.FindAsync(id);
             if (user == null)

@@ -4,5 +4,5 @@ namespace CaloriesTrackingAPI.Contracts;
 
 public interface IMealsRepository: IGenericRepository<Meal>
 {
-    public Task<List<Meal>> GetUserMeals(string id);
+    public Task<List<Meal>> GetUserMeals(Guid id);
 }

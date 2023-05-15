@@ -3,34 +3,27 @@ using CaloriesTrackingAPI.Contracts;
 using CaloriesTrackingAPI.Data;
 using Microsoft.EntityFrameworkCore;
 
-namespace CaloriesTrackingAPI.Repository
+namespace CaloriesTrackingAPI.Repository;
+
+public class MealsRepository : GenericRepository<Meal>, IMealsRepository
 {
-    public class MealsRepository : GenericRepository<Meal>, IMealsRepository
+    private readonly MealsDbContext db;
+
+    public MealsRepository(MealsDbContext db) : base(db)
     {
-        private readonly MealsDbContext context;
+        this.db = db;
+    }
 
-        public MealsRepository(MealsDbContext context) : base(context)
+    public async Task<List<Meal>> GetUserMeals(Guid id)
+    {
+        var meals = await db.Meals.Where(meal => meal.MealsUserId == id).ToListAsync();
+
+        if (meals == null)
         {
-            this.context = context;
+            return null;
         }
 
-        public async Task<List<Meal>> GetUserMeals(string id)
-        {
-            var meals = await this.context.Meals.Where(meal => meal.MealsUserId == id).ToListAsync();
-
-            if(meals == null)
-            {
-                return null;
-            }
-
-            return meals;
-
-        }
-
-        
-
-
-
+        return meals;
 
     }
 }

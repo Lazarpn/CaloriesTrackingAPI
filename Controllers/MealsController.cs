@@ -10,7 +10,7 @@ namespace CaloriesTrackingAPI.Controllers;
 [Route("[controller]")]
 [ApiController]
 [Authorize]
-public class MealsController : ControllerBase 
+public class MealsController : ControllerBase
 {
     private readonly IMapper mapper;
     private readonly IUserRepository userRepository;
@@ -26,13 +26,14 @@ public class MealsController : ControllerBase
 
 
     [HttpGet]
-    [Route("meals/{id}")]
+    [Route("meals/{id:guid}")]
     [Authorize]
-    public async Task<ActionResult<List<MealGetDto>>> GetUserMeals(string id)
+    public async Task<ActionResult<List<MealGetDto>>> GetUserMeals(Guid id)
     {
         var meals = await this.mealsRepository.GetUserMeals(id);
 
-        if(meals == null) {
+        if (meals == null)
+        {
             return BadRequest();
         }
 
@@ -40,15 +41,28 @@ public class MealsController : ControllerBase
         return Ok(records);
     }
 
-    [HttpGet]
-    [Route("{id}")]
+    [HttpPost]
     [Authorize]
-    public async Task<ActionResult<MealGetDto>> GetMeal(int id)
+    public async Task<ActionResult<MealGetDto>> AddMeal(MealCreateDto createMeal)
+    {
+        var user = await userRepository.GetUser(createMeal.MealsUserId);
+        var meal = mapper.Map<Meal>(createMeal);
+        meal.MealsUser = user;
+        await mealsRepository.AddAsync(meal);
+        user.Meals.Add(meal);
+        var mealGet = mapper.Map<MealGetDto>(meal);
+        return mealGet;
+    }
+
+    [HttpGet]
+    [Route("{id:guid}")]
+    [Authorize]
+    public async Task<ActionResult<MealGetDto>> GetMeal(Guid id)
     {
 
         var meal = await this.mealsRepository.GetAsync(id);
 
-        if(meal == null)
+        if (meal == null)
         {
             return NotFound();
         }
@@ -58,9 +72,9 @@ public class MealsController : ControllerBase
     }
 
     [HttpPut]
-    [Route("meal/{id}")]
+    [Route("meal/{id:guid}")]
     [Authorize]
-    public async Task<ActionResult<List<Meal>>> ChangeMeal(int id, MealUpdateDto updateMeal)
+    public async Task<ActionResult<List<Meal>>> ChangeMeal(Guid id, MealUpdateDto updateMeal)
     {
         if (id != updateMeal.Id)
         {
@@ -83,22 +97,11 @@ public class MealsController : ControllerBase
         return await this.mealsRepository.GetAllAsync();
     }
 
-    [HttpPost]
-    [Authorize]
-    public async Task<ActionResult<Meal>> AddMeal(MealCreateDto createMeal)
-    {
-        var user = await this.userRepository.GetUser(createMeal.MealsUserId);
-        var meal = this.mapper.Map<Meal>(createMeal);
-        meal.MealsUser = user;
-        await this.mealsRepository.AddAsync(meal);
-        user.Meals.Add(meal);
-        return meal;
-    }
 
     [HttpDelete]
-    [Route("{id}")]
+    [Route("{id:guid}")]
     [Authorize]
-    public async Task<ActionResult<List<Meal>>> DeleteMeal(int id)
+    public async Task<ActionResult<List<Meal>>> DeleteMeal(Guid id)
     {
         var meal = await this.mealsRepository.GetAsync(id);
 

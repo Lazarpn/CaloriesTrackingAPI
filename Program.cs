@@ -13,6 +13,7 @@ using System.Text;
 using CaloriesTrackingAPI.Context;
 using CaloriesTrackingAPI.Models.Users;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using System.Data;
 
 namespace HotelListingApi;
 
@@ -40,7 +41,7 @@ public class Program
             options.AddPolicy("AllowAll", b => b.AllowAnyHeader().AllowAnyOrigin().AllowAnyMethod());
         });
 
-       
+
 
         builder.Services.AddAutoMapper(typeof(MapperConfig));
 
@@ -48,9 +49,11 @@ public class Program
         builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
         builder.Services.AddScoped<IMealsRepository, MealsRepository>();
         builder.Services.AddScoped<IAuthManager, AuthManager>();
-        builder.Services.AddIdentityCore<MealsUser>().AddRoles<IdentityRole>().AddEntityFrameworkStores<MealsDbContext>();
+        builder.Services.AddIdentity<MealsUser, IdentityRole<Guid>>()
+            .AddEntityFrameworkStores<MealsDbContext>()
+            .AddDefaultTokenProviders();
         builder.Services.AddScoped<IUserRepository, UserRespository>();
-       
+
 
         builder.Services.AddAuthentication(options =>
         {
@@ -76,7 +79,7 @@ public class Program
         // Configure the HTTP request pipeline.
         if (app.Environment.IsDevelopment())
         {
-            
+
         }
 
         app.UseSwagger();

@@ -35,7 +35,7 @@ namespace CaloriesTrackingAPI.Repository
 
         public async Task<IdentityResult> ChangeUser(ManagerUserUpdateDto managerUserUpdateDto)
         {
-            var user = await this.userManager.FindByIdAsync(managerUserUpdateDto.Id);
+            var user = await this.userManager.FindByIdAsync(managerUserUpdateDto.Id.ToString());
             if (user == null)
             {
                 return null;

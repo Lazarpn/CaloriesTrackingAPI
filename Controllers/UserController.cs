@@ -26,7 +26,7 @@ namespace CaloriesTrackingAPI.Controllers
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public async Task<ActionResult> ChangeCaloriesPreference(string id, UserCaloriesDto userCaloriesDto)
+        public async Task<ActionResult> ChangeCaloriesPreference(Guid id, UserCaloriesDto userCaloriesDto)
         {
             if (id != userCaloriesDto.Id)
             {
@@ -51,7 +51,7 @@ namespace CaloriesTrackingAPI.Controllers
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public async Task<ActionResult> UploadPhoto(string id, UserPhotoDto userPhotoDto)
+        public async Task<ActionResult> UploadPhoto(Guid id, UserPhotoDto userPhotoDto)
         {
             if (id != userPhotoDto.Id)
             {
@@ -76,7 +76,7 @@ namespace CaloriesTrackingAPI.Controllers
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public async Task<ActionResult> ChangeUserInfo(string id, UserUpdateDto userUpdate)
+        public async Task<ActionResult> ChangeUserInfo(Guid id, UserUpdateDto userUpdate)
         {
             if (id != userUpdate.Id)
             {

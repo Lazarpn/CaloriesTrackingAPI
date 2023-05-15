@@ -2,7 +2,7 @@
 {
     public class UserCaloriesDto
     {
-        public string Id { get; set; }
+        public Guid Id { get; set; }
         public int CaloriesPreference { get; set; }
     }
 }

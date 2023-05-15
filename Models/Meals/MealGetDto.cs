@@ -1,10 +1,8 @@
-﻿namespace CaloriesTrackingAPI.Models.Meals
+﻿namespace CaloriesTrackingAPI.Models.Meals;
+
+public class MealGetDto : BaseMealDto
 {
-    public class MealGetDto : BaseMealDto
-    {
-        public int Id { get; set; }
+    public Guid Id { get; set; }
 
-
-    }
 
 }

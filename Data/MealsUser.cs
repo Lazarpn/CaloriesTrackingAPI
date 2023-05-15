@@ -1,19 +1,31 @@
 ﻿using Microsoft.AspNetCore.Identity;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Text.Json.Serialization;
 
-namespace CaloriesTrackingAPI.Data
+namespace CaloriesTrackingAPI.Data;
+
+public class MealsUser : IdentityUser<Guid>
 {
-    public class MealsUser : IdentityUser
-    {
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
-        public int? CaloriesPreference { get; set; } = 0;
-        public byte[]? UserPhotoByte { get; set; } = null;
+
+    [Required]
+    [MaxLength(50)]
+    public string FirstName { get; set; }
+
+    //[MaxLength(100, ErrorMessage = "Last name must be max 100 characters")]
+
+    [Required]
+    [MaxLength(100)]
+    public string LastName { get; set; }
+
+    [Range(0, 20000)]
+    public int CaloriesPreference { get; set; }
+    public byte[] UserPhotoByte { get; set; }
 
 
-        [JsonIgnore]
-        public ICollection<Meal> Meals { get; set; }
+    
+    [InverseProperty(nameof(Meal.MealsUser))]
+    public ICollection<Meal> Meals { get; set; } = new HashSet<Meal>();
 
 
-    }
 }

@@ -31,12 +31,19 @@ namespace CaloriesTrackingAPI.Repository
         {
 
             var user = await this.userManager.FindByEmailAsync(loginDto.Email);
+
+            if (user == null)
+            {
+                throw new Exception("User with a given email doesn't exist, please register!");
+            }
+
             bool isValidUser = await this.userManager.CheckPasswordAsync(user, loginDto.Password);
 
 
-            if (user == null || isValidUser == false)
+            if (isValidUser == false)
             {
-                return null;
+                throw new Exception("You entered a wrong password, please try again!");
+
 
             }
 
@@ -57,6 +64,21 @@ namespace CaloriesTrackingAPI.Repository
 
         public async Task<AuthResponseDto> Register(UserRegisterDto userDto)
         {
+            var userExists = await userManager.FindByEmailAsync(userDto.Email);
+
+            if(userExists != null)
+            {
+                throw new Exception("User with a given email already exists!");
+            }
+
+            var passwordValidator = new PasswordValidator<MealsUser>();
+            var passwordValidationResult = await passwordValidator.ValidateAsync(userManager, null, userDto.Password);
+
+            if (!passwordValidationResult.Succeeded)
+            {
+                throw new Exception("Password does not meet the requirements.");
+            }
+
             var user = this.mapper.Map<MealsUser>(userDto);
             //user.UserName = user.Email;
             user.UserName = userDto.Email;
@@ -87,7 +109,7 @@ namespace CaloriesTrackingAPI.Repository
 
             var claims = new List<Claim>
             {
-                new Claim(JwtRegisteredClaimNames.Sub, user.Id),
+                new Claim(JwtRegisteredClaimNames.Sub, user.Id.ToString()),
                 new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
                 new Claim(JwtRegisteredClaimNames.Email, user.Email),
             }.Union(userClaims).Union(rolesClaims);

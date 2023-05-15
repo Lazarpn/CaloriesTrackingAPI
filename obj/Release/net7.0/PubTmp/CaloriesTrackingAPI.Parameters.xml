@@ -3,7 +3,7 @@
   <parameter name="IIS Web Application Name" description="" value="CaloriesTrackingAPI" tags="IisApp">
     <parameterEntry kind="ProviderPath" scope="IisApp" match="^C:\\Users\\Lazar\\Desktop\\calories-tracking-api\\CaloriesTrackingAPI\\obj\\Release\\net7\.0\\PubTmp\\Out\\$" />
   </parameter>
-  <parameter name="CaloriesTrackingAPI.Context.MealsDbContext" description="" value="Data Source=tcp:lazar-calories-tracking-dbserver.database.windows.net,1433;Initial Catalog=CaloriesTrackingAPI_db;User Id=lazar@lazar-calories-tracking-dbserver;Password=RzIaAe#7" tags="dbfullsql">
+  <parameter name="CaloriesTrackingAPI.Context.MealsDbContext" description="" value="Data Source=tcp:lazar-calories-tracking-server.database.windows.net,1433;Initial Catalog=CaloriesTrackingAPI_db;User Id=Lazar@lazar-calories-tracking-server;Password=RzIaAe#7" tags="dbfullsql">
     <parameterEntry kind="ProviderPath" scope="dbfullsql" match="^C:\\Users\\Lazar\\Desktop\\calories-tracking-api\\CaloriesTrackingAPI\\obj\\Release\\net7\.0\\PubTmp\\EFSQLScripts\\CaloriesTrackingAPI\.Context\.MealsDbContext\.sql$" />
   </parameter>
 </parameters>

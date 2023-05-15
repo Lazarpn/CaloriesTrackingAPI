@@ -1,6 +1,7 @@
 ﻿using CaloriesTrackingAPI.Contracts;
 using CaloriesTrackingAPI.Models.Users;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -27,17 +28,25 @@ namespace CaloriesTrackingAPI.Controllers
         [Route("all")]
         [Authorize(Roles = "Administrator")]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        [ProducesResponseType(StatusCodes.Status403Forbidden)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<ActionResult<List<UserInfoDto>>> GetUsers()
         {
-            var users = await this.userAdministratorRepository.GetUsers();
-            if (users == null)
+            try
             {
-                return NotFound();
-            }
+                var users = await this.userAdministratorRepository.GetUsers();
+                if (users == null)
+                {
+                    return NotFound();
+                }
 
-            return users;
+                return users;
+            } catch (Exception ex)
+            {
+                return Unauthorized("You are not authorized to access this resource.");
+            }
+            
         }
 
         [HttpPut]

@@ -30,13 +30,15 @@ namespace CaloriesTrackingAPI.Controllers
         [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<ActionResult> Register([FromBody] UserRegisterDto userRegisterDto)
         {
-            var authResponse = await this.authManager.Register(userRegisterDto);
-            if (authResponse == null)
+            try
             {
-                return Unauthorized();
+                var authResponse = await this.authManager.Register(userRegisterDto);
+                return Ok(authResponse);
+            } catch (Exception ex)
+            {
+                return Unauthorized(ex.Message);
             }
-
-            return Ok(authResponse);
+            
         }
         [HttpPost]
         [Route("login")]
@@ -45,13 +47,15 @@ namespace CaloriesTrackingAPI.Controllers
         [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<ActionResult> Login([FromBody] UserLoginDto userLoginDto)
         {
-            var authResponse = await this.authManager.Login(userLoginDto);
-            if (authResponse == null)
+            try
             {
-                return Unauthorized();
+                var authResponse = await this.authManager.Login(userLoginDto);
+                return Ok(authResponse);
             }
-
-            return Ok(authResponse);
+            catch (Exception ex)
+            {
+                return Unauthorized(ex.Message);
+            }
         }
 
 

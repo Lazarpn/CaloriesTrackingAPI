@@ -5,7 +5,7 @@ namespace CaloriesTrackingAPI.Models.User;
 public class AuthResponseDto
 
 {
-    public string UserId { get; set; }
+    public Guid UserId { get; set; }
     public string Token { get; set; }
-    public UserInfoDto? UserInfo { get; set; } = null;
+    public UserInfoDto UserInfo { get; set; }
 }
