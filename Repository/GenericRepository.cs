@@ -2,60 +2,59 @@
 using CaloriesTrackingAPI.Contracts;
 using Microsoft.EntityFrameworkCore;
 
-namespace CaloriesTrackingAPI.Repository
+namespace CaloriesTrackingAPI.Repository;
+
+public class GenericRepository<T> : IGenericRepository<T> where T : class
 {
-    public class GenericRepository<T> : IGenericRepository<T> where T : class
+    private readonly MealsDbContext context;
+
+    public GenericRepository(MealsDbContext context)
     {
-        private readonly MealsDbContext context;
+        this.context = context;
+    }
+    public async Task<T> AddAsync(T entity)
+    {
+        await this.context.AddAsync(entity);
+        await this.context.SaveChangesAsync();
+        return entity;
+    }
 
-        public GenericRepository(MealsDbContext context)
+    
+
+    public async Task<List<T>> GetAllAsync()
+    {
+        return await this.context.Set<T>().ToListAsync();
+    }
+
+    public async Task<T> GetAsync(Guid? id)
+    {
+        if(id == null)
         {
-            this.context = context;
-        }
-        public async Task<T> AddAsync(T entity)
-        {
-            await this.context.AddAsync(entity);
-            await this.context.SaveChangesAsync();
-            return entity;
-        }
-
-        
-
-        public async Task<List<T>> GetAllAsync()
-        {
-            return await this.context.Set<T>().ToListAsync();
-        }
-
-        public async Task<T> GetAsync(Guid? id)
-        {
-            if(id == null)
-            {
-                return null;
-            }
-
-            return await context.Set<T>().FindAsync(id);
-
-
+            return null;
         }
 
-        public async Task UpdateAsync(T entity)
-        {
-             this.context.Update(entity);
-            await this.context.SaveChangesAsync();
-        }
+        return await context.Set<T>().FindAsync(id);
 
-        public async Task DeleteAsync(Guid id)
-        {
-            var entity = await GetAsync(id);
-            this.context.Set<T>().Remove(entity);
-            await this.context.SaveChangesAsync();
 
-        }
+    }
 
-        public async Task<bool> Exists(Guid id)
-        {
-            var entity = await GetAsync(id);
-            return entity != null;
-        }
+    public async Task UpdateAsync(T entity)
+    {
+         this.context.Update(entity);
+        await this.context.SaveChangesAsync();
+    }
+
+    public async Task DeleteAsync(Guid id)
+    {
+        var entity = await GetAsync(id);
+        this.context.Set<T>().Remove(entity);
+        await this.context.SaveChangesAsync();
+
+    }
+
+    public async Task<bool> Exists(Guid id)
+    {
+        var entity = await GetAsync(id);
+        return entity != null;
     }
 }

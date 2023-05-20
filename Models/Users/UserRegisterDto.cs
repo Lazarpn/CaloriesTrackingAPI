@@ -1,12 +1,11 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace CaloriesTrackingAPI.Models.Users
+namespace CaloriesTrackingAPI.Models.Users;
+
+public class UserRegisterDto: UserLoginDto
 {
-    public class UserRegisterDto: UserLoginDto
-    {
-        [Required]
-        public string FirstName { get; set; }
-        [Required]
-        public string LastName { get; set; }
-    }
+    [Required]
+    public string FirstName { get; set; }
+    [Required]
+    public string LastName { get; set; }
 }

@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "67MKYDAmb/VjF9UEFw3XRQUeniJKeyWCo9B6VyHBHQxWQ2ZWgLPRKdCXaI3YsEVuBbLioA5FvtdIq33kOeq9CQ==",
+  "dgSpecHash": "FKEPkxa+fVlqipwu7RLY8lBuns2HNYdz89AyJGLNQWPg7hv1ioxNFR14BCLEC5zGZwodcuGkzJiQbvsRs87Wwg==",
   "success": true,
   "projectFilePath": "C:\\Users\\Lazar\\Desktop\\calories-tracking-api\\CaloriesTrackingAPI\\CaloriesTrackingAPI.csproj",
   "expectedPackageFiles": [
@@ -13,6 +13,8 @@
     "C:\\Users\\Lazar\\.nuget\\packages\\microsoft.aspnetcore.cryptography.internal\\7.0.5\\microsoft.aspnetcore.cryptography.internal.7.0.5.nupkg.sha512",
     "C:\\Users\\Lazar\\.nuget\\packages\\microsoft.aspnetcore.cryptography.keyderivation\\7.0.5\\microsoft.aspnetcore.cryptography.keyderivation.7.0.5.nupkg.sha512",
     "C:\\Users\\Lazar\\.nuget\\packages\\microsoft.aspnetcore.identity.entityframeworkcore\\7.0.5\\microsoft.aspnetcore.identity.entityframeworkcore.7.0.5.nupkg.sha512",
+    "C:\\Users\\Lazar\\.nuget\\packages\\microsoft.aspnetcore.mvc.versioning\\5.0.0\\microsoft.aspnetcore.mvc.versioning.5.0.0.nupkg.sha512",
+    "C:\\Users\\Lazar\\.nuget\\packages\\microsoft.aspnetcore.mvc.versioning.apiexplorer\\5.0.0\\microsoft.aspnetcore.mvc.versioning.apiexplorer.5.0.0.nupkg.sha512",
     "C:\\Users\\Lazar\\.nuget\\packages\\microsoft.aspnetcore.openapi\\7.0.4\\microsoft.aspnetcore.openapi.7.0.4.nupkg.sha512",
     "C:\\Users\\Lazar\\.nuget\\packages\\microsoft.bcl.asyncinterfaces\\1.1.1\\microsoft.bcl.asyncinterfaces.1.1.1.nupkg.sha512",
     "C:\\Users\\Lazar\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",

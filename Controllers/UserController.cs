@@ -1,114 +1,129 @@
 ﻿using CaloriesTrackingAPI.Contracts;
 using CaloriesTrackingAPI.Models.Users;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
-namespace CaloriesTrackingAPI.Controllers
+namespace CaloriesTrackingAPI.Controllers;
+
+[Route("api/[controller]")]
+[ApiController]
+[Authorize]
+public class UserController : ControllerBase
 {
-    [Route("api/[controller]")]
-    [ApiController]
-    [Authorize]
-    public class UserController : ControllerBase
+    private readonly IUserRepository userRepository;
+
+    public UserController(IUserRepository userRepository)
     {
-        private readonly IUserRepository userRepository;
+        this.userRepository = userRepository;
+    }
 
-        public UserController(IUserRepository userRepository)
+    
+
+    [HttpPut]
+    [Route("calories/{id}")]
+    [Authorize]
+    [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    public async Task<ActionResult> ChangeCaloriesPreference(Guid id, UserCaloriesDto userCaloriesDto)
+    {
+        if (id != userCaloriesDto.Id)
         {
-            this.userRepository = userRepository;
+            return BadRequest();
+        }
+        var result = await this.userRepository.ChangeCaloriesPreference(userCaloriesDto);
+
+        if (result == null)
+        {
+            return BadRequest();
         }
 
-        
+        return Ok(result);
+    }
 
-        [HttpPut]
-        [Route("calories/{id}")]
-        [Authorize]
-        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        [ProducesResponseType(StatusCodes.Status200OK)]
-        public async Task<ActionResult> ChangeCaloriesPreference(Guid id, UserCaloriesDto userCaloriesDto)
+
+
+
+    [HttpPut]
+    [Route("photo/{id}")]
+    [Authorize]
+    [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    public async Task<IActionResult> UploadPhoto(Guid id, UserPhotoDto userPhotoDto)
+    {
+        if (id != userPhotoDto.Id)
         {
-            if (id != userCaloriesDto.Id)
-            {
-                return BadRequest();
-            }
-            var result = await this.userRepository.ChangeCaloriesPreference(userCaloriesDto);
+            return BadRequest();
+        }
+        var result = await this.userRepository.UploadPhoto(id, userPhotoDto);
 
-            if (result == null)
-            {
-                return BadRequest();
-            }
-
-            return Ok(result);
+        if (result == null)
+        {
+            return BadRequest();
         }
 
+        return Ok(result);
+    }
 
-
-
-        [HttpPut]
-        [Route("photo/{id}")]
-        [Authorize]
-        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        [ProducesResponseType(StatusCodes.Status200OK)]
-        public async Task<ActionResult> UploadPhoto(Guid id, UserPhotoDto userPhotoDto)
+    [HttpGet]
+    [Route("photo/{id}")]
+    [Authorize]
+    [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    public async Task<ActionResult<UserPhotoDto>> GetPhoto(Guid id)
+    {
+        var userPhoto = await userRepository.GetPhoto(id);
+        if(userPhoto == null)
         {
-            if (id != userPhotoDto.Id)
-            {
-                return BadRequest();
-            }
-            var result = await this.userRepository.UploadPhoto(id, userPhotoDto);
-
-            if (result == null)
-            {
-                return BadRequest();
-            }
-
-            return Ok(result);
+            return NotFound();
         }
 
+        return Ok(userPhoto);
+    }
 
 
 
-        [HttpPut]
-        [Route("{id}")]
-        [Authorize]
-        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        [ProducesResponseType(StatusCodes.Status200OK)]
-        public async Task<ActionResult> ChangeUserInfo(Guid id, UserUpdateDto userUpdate)
+
+    [HttpPut]
+    [Route("{id}")]
+    [Authorize]
+    [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    public async Task<ActionResult> ChangeUserInfo(Guid id, UserUpdateDto userUpdate)
+    {
+        if (id != userUpdate.Id)
         {
-            if (id != userUpdate.Id)
-            {
-                return BadRequest();
-            }
-            var result = await this.userRepository.ChangeUserInfo(id, userUpdate.FirstName, userUpdate.LastName);
+            return BadRequest();
+        }
+        var result = await this.userRepository.ChangeUserInfo(id, userUpdate.FirstName, userUpdate.LastName);
 
-            if (result == null)
-            {
-                return BadRequest();
-            }
-
-            return Ok(result);
+        if (result == null)
+        {
+            return BadRequest();
         }
 
-        //api/Account/email
-        [HttpGet]
-        [Route("{email}")]
-        [Authorize]
-        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        [ProducesResponseType(StatusCodes.Status200OK)]
-        public async Task<ActionResult<UserInfoDto>> GetUserInfo(string email)
+        return Ok(result);
+    }
+
+    //api/Account/email
+    [HttpGet]
+    [Route("{email}")]
+    [Authorize]
+    [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    public async Task<ActionResult<UserInfoDto>> GetUserInfo(string email)
+    {
+        var user = await this.userRepository.GetUserInfo(email);
+
+        if (user == null)
         {
-            var user = await this.userRepository.GetUserInfo(email);
-
-            if (user == null)
-            {
-                return BadRequest();
-            }
-
-            return Ok(user);
+            return BadRequest();
         }
+
+        return Ok(user);
     }
 }

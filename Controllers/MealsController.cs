@@ -26,7 +26,7 @@ public class MealsController : ControllerBase
 
 
     [HttpGet]
-    [Route("meals/{id:guid}")]
+    [Route("user/{id:guid}")]
     [Authorize]
     public async Task<ActionResult<List<MealGetDto>>> GetUserMeals(Guid id)
     {
@@ -72,9 +72,9 @@ public class MealsController : ControllerBase
     }
 
     [HttpPut]
-    [Route("meal/{id:guid}")]
+    [Route("{id:guid}")]
     [Authorize]
-    public async Task<ActionResult<List<Meal>>> ChangeMeal(Guid id, MealUpdateDto updateMeal)
+    public async Task<IActionResult> ChangeMeal(Guid id, MealUpdateDto updateMeal)
     {
         if (id != updateMeal.Id)
         {
@@ -94,14 +94,14 @@ public class MealsController : ControllerBase
 
         await this.mealsRepository.UpdateAsync(meal);
 
-        return await this.mealsRepository.GetAllAsync();
+        return NoContent();
     }
 
 
     [HttpDelete]
     [Route("{id:guid}")]
     [Authorize]
-    public async Task<ActionResult<List<Meal>>> DeleteMeal(Guid id)
+    public async Task<IActionResult> DeleteMeal(Guid id)
     {
         var meal = await this.mealsRepository.GetAsync(id);
 

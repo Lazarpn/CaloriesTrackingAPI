@@ -1,8 +1,7 @@
-﻿namespace CaloriesTrackingAPI.Models.Users
+﻿namespace CaloriesTrackingAPI.Models.Users;
+
+public class UserCaloriesDto
 {
-    public class UserCaloriesDto
-    {
-        public Guid Id { get; set; }
-        public int CaloriesPreference { get; set; }
-    }
+    public Guid Id { get; set; }
+    public int CaloriesPreference { get; set; }
 }
