@@ -78,7 +78,7 @@
       "Humanizer.Core/2.14.1": {
         "type": "package",
         "compile": {
-          "lib/net6.0/_._": {
+          "lib/net6.0/Humanizer.dll": {
             "related": ".xml"
           }
         },
@@ -514,7 +514,7 @@
           "System.Text.Json": "7.0.0"
         },
         "compile": {
-          "lib/net7.0/_._": {
+          "lib/net7.0/Microsoft.Extensions.DependencyModel.dll": {
             "related": ".xml"
           }
         },
@@ -862,7 +862,7 @@
           "System.CodeDom": "4.4.0"
         },
         "compile": {
-          "lib/netstandard2.0/_._": {}
+          "lib/netstandard2.0/Mono.TextTemplating.dll": {}
         },
         "runtime": {
           "lib/netstandard2.0/Mono.TextTemplating.dll": {}
@@ -943,7 +943,7 @@
       "System.CodeDom/4.4.0": {
         "type": "package",
         "compile": {
-          "ref/netstandard2.0/_._": {
+          "ref/netstandard2.0/System.CodeDom.dll": {
             "related": ".xml"
           }
         },
@@ -1399,6 +1399,37 @@
             "assetType": "runtime",
             "rid": "win"
           }
+        }
+      },
+      "CaloriesTrackingAPI.Core/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v7.0",
+        "dependencies": {
+          "AutoMapper.Extensions.Microsoft.DependencyInjection": "12.0.1",
+          "CaloriesTrackingAPI.Data": "1.0.0",
+          "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "7.0.5"
+        },
+        "compile": {
+          "bin/placeholder/CaloriesTrackingAPI.Core.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/CaloriesTrackingAPI.Core.dll": {}
+        }
+      },
+      "CaloriesTrackingAPI.Data/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v7.0",
+        "dependencies": {
+          "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "7.0.5",
+          "Microsoft.EntityFrameworkCore": "7.0.5",
+          "Microsoft.EntityFrameworkCore.Design": "7.0.5",
+          "Microsoft.EntityFrameworkCore.SqlServer": "7.0.5"
+        },
+        "compile": {
+          "bin/placeholder/CaloriesTrackingAPI.Data.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/CaloriesTrackingAPI.Data.dll": {}
         }
       }
     }
@@ -4235,11 +4266,21 @@
         "useSharedDesignerContext.txt",
         "version.txt"
       ]
+    },
+    "CaloriesTrackingAPI.Core/1.0.0": {
+      "type": "project",
+      "path": "../CaloriesTrackingAPI.Core/CaloriesTrackingAPI.Core.csproj",
+      "msbuildProject": "../CaloriesTrackingAPI.Core/CaloriesTrackingAPI.Core.csproj"
+    },
+    "CaloriesTrackingAPI.Data/1.0.0": {
+      "type": "project",
+      "path": "../CaloriesTracking.Data/CaloriesTrackingAPI.Data.csproj",
+      "msbuildProject": "../CaloriesTracking.Data/CaloriesTrackingAPI.Data.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net7.0": [
-      "AutoMapper.Extensions.Microsoft.DependencyInjection >= 12.0.1",
+      "CaloriesTrackingAPI.Core >= 1.0.0",
       "Microsoft.AspNetCore.Authentication.JwtBearer >= 7.0.5",
       "Microsoft.AspNetCore.Identity.EntityFrameworkCore >= 7.0.5",
       "Microsoft.AspNetCore.Mvc.Versioning >= 5.0.0",
@@ -4247,7 +4288,6 @@
       "Microsoft.AspNetCore.OpenApi >= 7.0.4",
       "Microsoft.EntityFrameworkCore >= 7.0.5",
       "Microsoft.EntityFrameworkCore.Design >= 7.0.5",
-      "Microsoft.EntityFrameworkCore.SqlServer >= 7.0.5",
       "Microsoft.EntityFrameworkCore.Tools >= 7.0.5",
       "Microsoft.Extensions.Identity.Core >= 7.0.5",
       "Swashbuckle.AspNetCore >= 6.4.0"
@@ -4279,7 +4319,11 @@
       "frameworks": {
         "net7.0": {
           "targetAlias": "net7.0",
-          "projectReferences": {}
+          "projectReferences": {
+            "C:\\Users\\Lazar\\Desktop\\calories-tracking-api\\CaloriesTrackingAPI.Core\\CaloriesTrackingAPI.Core.csproj": {
+              "projectPath": "C:\\Users\\Lazar\\Desktop\\calories-tracking-api\\CaloriesTrackingAPI.Core\\CaloriesTrackingAPI.Core.csproj"
+            }
+          }
         }
       },
       "warningProperties": {
@@ -4292,10 +4336,6 @@
       "net7.0": {
         "targetAlias": "net7.0",
         "dependencies": {
-          "AutoMapper.Extensions.Microsoft.DependencyInjection": {
-            "target": "Package",
-            "version": "[12.0.1, )"
-          },
           "Microsoft.AspNetCore.Authentication.JwtBearer": {
             "target": "Package",
             "version": "[7.0.5, )"
@@ -4323,10 +4363,6 @@
           "Microsoft.EntityFrameworkCore.Design": {
             "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
             "suppressParent": "All",
-            "target": "Package",
-            "version": "[7.0.5, )"
-          },
-          "Microsoft.EntityFrameworkCore.SqlServer": {
             "target": "Package",
             "version": "[7.0.5, )"
           },

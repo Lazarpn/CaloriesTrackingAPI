@@ -85,3 +85,7 @@ C:\Users\Lazar\Desktop\calories-tracking-api\CaloriesTrackingAPI\bin\Debug\net7.
 C:\Users\Lazar\Desktop\calories-tracking-api\CaloriesTrackingAPI\bin\Debug\net7.0\Microsoft.Extensions.Options.dll
 C:\Users\Lazar\Desktop\calories-tracking-api\CaloriesTrackingAPI\bin\Debug\net7.0\Microsoft.AspNetCore.Mvc.Versioning.dll
 C:\Users\Lazar\Desktop\calories-tracking-api\CaloriesTrackingAPI\bin\Debug\net7.0\Microsoft.AspNetCore.Mvc.Versioning.ApiExplorer.dll
+C:\Users\Lazar\Desktop\calories-tracking-api\CaloriesTrackingAPI\bin\Debug\net7.0\CaloriesTrackingAPI.Core.dll
+C:\Users\Lazar\Desktop\calories-tracking-api\CaloriesTrackingAPI\bin\Debug\net7.0\CaloriesTrackingAPI.Data.dll
+C:\Users\Lazar\Desktop\calories-tracking-api\CaloriesTrackingAPI\bin\Debug\net7.0\CaloriesTrackingAPI.Core.pdb
+C:\Users\Lazar\Desktop\calories-tracking-api\CaloriesTrackingAPI\bin\Debug\net7.0\CaloriesTrackingAPI.Data.pdb

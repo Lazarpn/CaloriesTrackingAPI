@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
-using CaloriesTrackingAPI.Contracts;
+using CaloriesTrackingAPI.Core.Contracts;
 using CaloriesTrackingAPI.Data;
-using CaloriesTrackingAPI.Models.Meals;
+using CaloriesTrackingAPI.Core.Models.Meals;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 

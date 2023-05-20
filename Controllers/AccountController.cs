@@ -1,5 +1,5 @@
-﻿using CaloriesTrackingAPI.Contracts;
-using CaloriesTrackingAPI.Models.Users;
+﻿using CaloriesTrackingAPI.Core.Contracts;
+using CaloriesTrackingAPI.Core.Models.Users;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 

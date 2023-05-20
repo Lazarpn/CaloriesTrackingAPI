@@ -1,19 +1,13 @@
-using CaloriesTrackingAPI.Configuration;
-using CaloriesTrackingAPI.Contracts;
+using CaloriesTrackingAPI.Core.Contracts;
 using CaloriesTrackingAPI.Data;
-using CaloriesTrackingAPI.Repository;
-using CaloriesTrackingAPI.Configuration;
-using CaloriesTrackingAPI.Contracts;
-using CaloriesTrackingAPI.Data;
-using CaloriesTrackingAPI.Repository;
+using CaloriesTrackingAPI.Core.Repository;
+using CaloriesTrackingAPI.Core.Configuration;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
-using CaloriesTrackingAPI.Context;
-using CaloriesTrackingAPI.Models.Users;
+using CaloriesTrackingAPI.Data.Context;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
-using System.Data;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Versioning;
 using Microsoft.Net.Http.Headers;
@@ -126,7 +120,7 @@ public class Program
                 new Microsoft.Net.Http.Headers.CacheControlHeaderValue()
                 {
                     Public = true,
-                    MaxAge = TimeSpan.FromSeconds(10),
+                    MaxAge = TimeSpan.FromSeconds(5),
                 };
             context.Response.Headers[HeaderNames.Vary] =
                 new string[] { "Accept-Encoding" };
